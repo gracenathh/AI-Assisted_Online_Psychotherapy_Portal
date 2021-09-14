@@ -108,6 +108,11 @@ def video_upload():
             return "No video uploaded", 400
         
         filename = secure_filename(video_file.filename)
+
+        # if not os.path.exists(".\static\uploads"):
+        #     print("")
+        #     os.makedirs(".\static\uploads")
+
         video_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         newVideo = VideoFiles(videoName=filename, videoData=video_file.read())
         print(newVideo.videoName)
@@ -147,6 +152,15 @@ def videoDB():
     print(video_array)
 
     return render_template("videoDB.html", videos = video_array, user = Variables.username)
+
+@app.route("/unprocessdVideo")
+def unprocessedVideo():
+    return render_template("unprocessed-video-details-page-13.html")
+
+@app.route("/processedVideo")
+def processedVideo():
+    return render_template("video-output-page-11.html")
+
 
 """
 @app.route('patient/<id>/update', methods=["GET", "POST"])
