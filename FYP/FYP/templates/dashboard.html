@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <a href="{{url_for('dashboard')}}">Dashboard</a>
+        <a href="{{url_for('userrecords')}}">Records</a>
+        <a href="{{url_for('addrecordpage')}}">Add Record</a>
+        <a href="{{url_for('account')}}">Account</a>
+        <a href="{{url_for('video_upload')}}">Video Upload</a>
+    </header>
+    <h2>
+       Welcome Dr. {{current_user.fullname}}
+    </h2>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+
+<h1>Your Account</h1>
+<small>{{current_user.title}}</small>
+<span>{{current_user.fullname}} </span>
+
+
+<small>{{current_user.email}}</small>
+<small>{{current_user.organization}}</small>
+
+<a href="{{ url_for('accountupdate')}}">Update Details</a>
+<a href="{{ url_for('changepassword')}}">Change Password</a>
+
+</html>

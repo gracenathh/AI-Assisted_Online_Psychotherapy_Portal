@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    {% if patient.therapist == current_user %}
+        <a href="{{ url_for(updaterecord, post_id=post.id)}}">Update Details</a>
+    { % endif %}
+
+    <small>{{patient.title}} </small>
+    <span>{{patient.firstname}} </span>
+    <span>{{patient.lastname}} </span>
+
+    <small>{{patient.dob}} </small>
+
+    <small>{{patient.city}} </small>
+    <span>{{patient.country}} </span>
+
+    <small>{{patient.guardiantitle}} </small>
+    <span>{{patient.guardianfirstname}} </span>
+    <span>{{patient.guardianfirstname}} </span>
+
+    <small>{{patient.relationship}} </small>
+
+    <small>{{patient.email}} </small>
+
+    <small>{{patient.countrycode}} </small>
+    <span>{{patient.phonenumber}} </span>
+
+</html>
