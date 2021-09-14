@@ -96,6 +96,10 @@ def videoDB():
 
     return render_template("videoDB.html", videos = video_array, user = Variables.username)
 
+@app.route("/unprocessedVideo")
+def unprocessedVideo():
+    return render_template("unprocessed-video-details-page-13.html")
+
 
 class Variables:
     username = getpass.getuser()

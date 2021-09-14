@@ -1,0 +1,757 @@
+/* screen - unprocessed-video-details-page-13 */
+
+.unprocessed-video-details-page-13 {
+  align-items: flex-start;
+  background-color: var(--rose-white);
+  display: flex;
+  flex-direction: column;
+  height: 1024px;
+  overflow: hidden;
+  width: 1440px;
+}
+
+.unprocessed-video-details-page-13 .overlap-group6 {
+  height: 979px;
+  position: relative;
+  width: 1502px;
+}
+
+.unprocessed-video-details-page-13 .overlap-group {
+  height: 934px;
+  left: 0;
+  position: absolute;
+  top: 45px;
+  width: 1441px;
+}
+
+.unprocessed-video-details-page-13 .x68e419f50db202b-ovebg-preview-1 {
+  height: 934px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 721px;
+}
+
+.unprocessed-video-details-page-13 .x68e419f50db202b-ovebg-preview-2 {
+  height: 934px;
+  left: 721px;
+  position: absolute;
+  top: 0;
+  width: 720px;
+}
+
+.unprocessed-video-details-page-13 .overlap-group2 {
+  height: 396px;
+  left: 694px;
+  position: absolute;
+  top: 84px;
+  width: 699px;
+}
+
+.unprocessed-video-details-page-13 .video {
+  height: 386px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 697px;
+}
+
+.unprocessed-video-details-page-13 .overlap-group-1 {
+  height: 33px;
+  left: 0;
+  position: absolute;
+  top: 352px;
+  width: 699px;
+}
+
+.unprocessed-video-details-page-13 .rectangle-24 {
+  background-color: var(--white);
+  height: 33px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 697px;
+}
+
+.unprocessed-video-details-page-13 .line-7 {
+  height: 3px;
+  left: 100px;
+  position: absolute;
+  top: 16px;
+  width: 537px;
+}
+
+.unprocessed-video-details-page-13 .text-1 {
+  color: var(--black-2);
+  font-family: var(--font-family-josefin_sans);
+  font-size: 14.6px;
+  height: 28px;
+  left: 33px;
+  letter-spacing: 0.15px;
+  line-height: 42.8px;
+  position: absolute;
+  text-align: center;
+  top: 4px;
+  white-space: nowrap;
+  width: 63px;
+}
+
+.unprocessed-video-details-page-13 .text-2 {
+  color: var(--black-2);
+  font-family: var(--font-family-josefin_sans);
+  font-size: 14.6px;
+  height: 28px;
+  left: 636px;
+  letter-spacing: 0.15px;
+  line-height: 42.8px;
+  position: absolute;
+  text-align: center;
+  top: 3px;
+  white-space: nowrap;
+  width: 63px;
+}
+
+.unprocessed-video-details-page-13 .ellipse-3 {
+  background-color: var(--cashmere);
+  border-radius: 0.99px/3.57px;
+  height: 7px;
+  left: 224px;
+  position: absolute;
+  top: 13px;
+  transform: rotate(180deg);
+  width: 2px;
+}
+
+.unprocessed-video-details-page-13 .ellipse-4 {
+  background-color: var(--cashmere);
+  border-radius: 0.99px/3.57px;
+  height: 7px;
+  left: 441px;
+  position: absolute;
+  top: 13px;
+  transform: rotate(180deg);
+  width: 2px;
+}
+
+.unprocessed-video-details-page-13 .ellipse-5 {
+  background-color: var(--cashmere);
+  border-radius: 0.99px/3.57px;
+  height: 7px;
+  left: 513px;
+  position: absolute;
+  top: 13px;
+  transform: rotate(180deg);
+  width: 2px;
+}
+
+.unprocessed-video-details-page-13 .ellipse-6 {
+  background-color: var(--cashmere);
+  border-radius: 0.99px/3.57px;
+  height: 7px;
+  left: 626px;
+  position: absolute;
+  top: 13px;
+  transform: rotate(180deg);
+  width: 2px;
+}
+
+.unprocessed-video-details-page-13 .pause {
+  align-items: flex-start;
+  display: flex;
+  height: 9px;
+  left: 17px;
+  min-width: 10px;
+  position: absolute;
+  top: 13px;
+}
+
+.unprocessed-video-details-page-13 .rectangle-33 {
+  align-self: center;
+  background-color: #00000099;
+  height: 9px;
+  margin-bottom: 0;
+  width: 3px;
+}
+
+.unprocessed-video-details-page-13 .rectangle-34 {
+  background-color: var(--black-2);
+  height: 9px;
+  margin-left: 4px;
+  margin-top: 0;
+  width: 3px;
+}
+
+.unprocessed-video-details-page-13 .line-8 {
+  height: 2px;
+  left: 100px;
+  position: absolute;
+  top: 17px;
+  width: 24px;
+}
+
+.unprocessed-video-details-page-13 .ellipse-2 {
+  background-color: var(--cashmere);
+  border-radius: 0.99px/3.57px;
+  height: 7px;
+  left: 113px;
+  position: absolute;
+  top: 13px;
+  transform: rotate(180deg);
+  width: 2px;
+}
+
+.unprocessed-video-details-page-13 .overlap-group1 {
+  height: 21px;
+  left: 199px;
+  position: absolute;
+  top: 375px;
+  width: 51px;
+}
+
+.unprocessed-video-details-page-13 .rectangle-25 {
+  background-color: var(--lynch);
+  border-radius: 4.86px;
+  height: 15px;
+  left: 0;
+  position: absolute;
+  top: 4px;
+  width: 51px;
+}
+
+.unprocessed-video-details-page-13 .polygon-4 {
+  height: 7px;
+  left: 21px;
+  position: absolute;
+  top: 0;
+  width: 10px;
+}
+
+.unprocessed-video-details-page-13 .sad {
+  color: var(--white);
+  font-family: var(--font-family-josefin_sans);
+  font-size: 8.7px;
+  font-weight: 600;
+  height: 17px;
+  left: 3px;
+  letter-spacing: 0.09px;
+  line-height: 42.8px;
+  position: absolute;
+  text-align: center;
+  top: 3px;
+  white-space: nowrap;
+  width: 48px;
+}
+
+.unprocessed-video-details-page-13 .overlap-group-2 {
+  align-items: center;
+  background-color: var(--white);
+  display: flex;
+  height: 52px;
+  left: 0;
+  min-width: 1440px;
+  padding: 4px 17.5px;
+  position: absolute;
+  top: 0;
+}
+
+.unprocessed-video-details-page-13 .random-dot-logo {
+  background-color: var(--cashmere);
+  border-radius: 8.99px;
+  height: 18px;
+  margin-top: 0;
+  width: 18px;
+}
+
+.unprocessed-video-details-page-13 .psychotherapy-portal {
+  height: 15px;
+  margin-left: 112px;
+  margin-top: 0.49px;
+  width: 230px;
+}
+
+.unprocessed-video-details-page-13 .dashboard {
+  height: 15px;
+  margin-left: 49px;
+  margin-top: 8.99px;
+  width: 113px;
+
+}
+
+.unprocessed-video-details-page-13 .patient-records {
+  height: 16px;
+  margin-left: 86px;
+  margin-top: 8.99px;
+  width: 168px;
+}
+
+
+.unprocessed-video-details-page-13 .video-database {
+  height: 16px;
+  margin-left: 58px;
+  margin-top: 8.99px;
+  width: 158px;
+}
+
+.unprocessed-video-details-page-13 .your-profile {
+  height: 15px;
+  margin-left: 212px;
+  margin-top: 8.99px;
+  width: 137px;
+}
+
+.x7938 {
+  background-color: #698996;
+  border: 1px solid #ffffff;
+  border-radius: 100px;
+  height: 40px;
+  margin-bottom: 4.0px;
+  margin-left: 12px;
+  opacity: 1;
+  width: 39px;
+}
+
+.x7938 .icon-xckXke {
+  height: 25px;
+  left: 7px;
+  opacity: 1;
+  position: relative;
+  top: 8px;
+  width: 24px;
+}
+
+.x7938 .icon-muTiQF {
+  height: 24px;
+  left: 1px;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  width: 23px;
+}
+
+.unprocessed-video-details-page-13 .line-16 {
+  height: 4px;
+  left: 828px;
+  position: absolute;
+  top: 45px;
+  width: 207px;
+}
+
+.unprocessed-video-details-page-13 .rectangle-27 {
+  background-color: var(--white);
+  border-radius: 9.65px;
+  height: 400px;
+  left: 66px;
+  opacity: 0.9;
+  position: absolute;
+  top: 80px;
+  width: 599px;
+}
+
+.unprocessed-video-details-page-13 .rectangle-28 {
+  height: 125px;
+  left: 69px;
+  position: absolute;
+  top: 355px;
+  width: 596px;
+}
+
+.unprocessed-video-details-page-13 .video-id {
+  height: 45px;
+  left: 107px;
+  letter-spacing: 0;
+  line-height: 42.8px;
+  position: absolute;
+  top: 154px;
+  white-space: nowrap;
+  width: 155px;
+}
+
+.unprocessed-video-details-page-13 .text-3 {
+  height: 45px;
+  left: 433px;
+  letter-spacing: 0;
+  line-height: 42.8px;
+  position: absolute;
+  top: 312px;
+  white-space: nowrap;
+  width: 429px;
+}
+
+.unprocessed-video-details-page-13 .name {
+  height: 45px;
+  left: 433px;
+  letter-spacing: 0;
+  line-height: 42.8px;
+  position: absolute;
+  text-decoration: underline;
+  top: 363px;
+  white-space: nowrap;
+  width: 429px;
+}
+
+.unprocessed-video-details-page-13 .phone {
+  height: 45px;
+  left: 433px;
+  letter-spacing: 0;
+  line-height: 42.8px;
+  position: absolute;
+  text-decoration: underline;
+  top: 418px;
+  white-space: nowrap;
+  width: 429px;
+}
+
+.unprocessed-video-details-page-13 .x20th-march-2021 {
+  height: 45px;
+  left: 433px;
+  letter-spacing: 0;
+  line-height: 42.8px;
+  position: absolute;
+  top: 258px;
+  white-space: nowrap;
+  width: 429px;
+}
+
+.unprocessed-video-details-page-13 .davis20032021mp4 {
+  height: 45px;
+  left: 433px;
+  letter-spacing: 0;
+  line-height: 42.8px;
+  position: absolute;
+  top: 211px;
+  white-space: nowrap;
+  width: 228px;
+}
+
+.unprocessed-video-details-page-13 .phone-1 {
+  height: 45px;
+  left: 434px;
+  letter-spacing: 0;
+  line-height: 42.8px;
+  position: absolute;
+  top: 157px;
+  white-space: nowrap;
+  width: 155px;
+}
+
+.unprocessed-video-details-page-13 .line-18 {
+  height: 2px;
+  left: 69px;
+  position: absolute;
+  top: 139px;
+  width: 597px;
+}
+
+.unprocessed-video-details-page-13 .date-uploaded {
+  height: 45px;
+  left: 107px;
+  letter-spacing: 0;
+  line-height: 42.8px;
+  position: absolute;
+  top: 258px;
+  white-space: nowrap;
+  width: 194px;
+}
+
+.unprocessed-video-details-page-13 .session-timing {
+  height: 45px;
+  left: 106px;
+  letter-spacing: 0;
+  line-height: 42.8px;
+  position: absolute;
+  top: 312px;
+  white-space: nowrap;
+  width: 234px;
+}
+
+.unprocessed-video-details-page-13 .patient-name {
+  height: 45px;
+  left: 106px;
+  letter-spacing: 0;
+  line-height: 42.8px;
+  position: absolute;
+  top: 364px;
+  white-space: nowrap;
+  width: 234px;
+}
+
+.unprocessed-video-details-page-13 .patient-id {
+  height: 45px;
+  left: 107px;
+  letter-spacing: 0;
+  line-height: 42.8px;
+  position: absolute;
+  top: 418px;
+  white-space: nowrap;
+  width: 234px;
+}
+
+.unprocessed-video-details-page-13 .file-name {
+  height: 45px;
+  left: 106px;
+  letter-spacing: 0;
+  line-height: 42.8px;
+  position: absolute;
+  top: 204px;
+  white-space: nowrap;
+  width: 155px;
+}
+
+.unprocessed-video-details-page-13 .video-details {
+  height: 22px;
+  left: 106px;
+  position: absolute;
+  top: 105px;
+  width: 174px;
+}
+
+.unprocessed-video-details-page-13 .overlap-group3 {
+  height: 36px;
+  left: 628px;
+  position: absolute;
+  top: 92px;
+  width: 36px;
+}
+
+.unprocessed-video-details-page-13 .vector {
+  height: 31px;
+  left: 0;
+  position: absolute;
+  top: 5px;
+  width: 31px;
+}
+
+.unprocessed-video-details-page-13 .vector-1 {
+  height: 25px;
+  left: 11px;
+  position: absolute;
+  top: 0;
+  width: 25px;
+}
+
+.unprocessed-video-details-page-13 .overlap-group4 {
+  background-color: #ffffffe6;
+  border-radius: 9.65px;
+  height: 451px;
+  left: 66px;
+  position: absolute;
+  top: 502px;
+  width: 1325px;
+}
+
+.unprocessed-video-details-page-13 .text-4 {
+  height: 46px;
+  left: 12px;
+  letter-spacing: 0.15px;
+  line-height: 42.5px;
+  position: absolute;
+  text-align: center;
+  top: 91px;
+  white-space: nowrap;
+  width: 89px;
+}
+
+.unprocessed-video-details-page-13 .emotion-tags {
+  height: 17px;
+  left: 100px;
+  position: absolute;
+  top: 40px;
+  width: 138px;
+}
+
+.unprocessed-video-details-page-13 .remarks {
+  height: 17px;
+  left: 462px;
+  position: absolute;
+  top: 39px;
+  width: 86px;
+}
+
+.unprocessed-video-details-page-13 .text-5 {
+  height: 46px;
+  left: 12px;
+  letter-spacing: 0.15px;
+  line-height: 42.5px;
+  position: absolute;
+  text-align: center;
+  top: 162px;
+  white-space: nowrap;
+  width: 89px;
+}
+
+.unprocessed-video-details-page-13 .text-6 {
+  height: 46px;
+  left: 12px;
+  letter-spacing: 0.15px;
+  line-height: 42.5px;
+  position: absolute;
+  text-align: center;
+  top: 233px;
+  white-space: nowrap;
+  width: 89px;
+}
+
+.unprocessed-video-details-page-13 .text-7 {
+  height: 46px;
+  left: 12px;
+  letter-spacing: 0.15px;
+  line-height: 42.5px;
+  position: absolute;
+  text-align: center;
+  top: 305px;
+  white-space: nowrap;
+  width: 89px;
+}
+
+.unprocessed-video-details-page-13 .overlap-group1-1 {
+  height: 442px;
+  left: 2px;
+  position: absolute;
+  top: 6px;
+  width: 1319px;
+}
+
+.unprocessed-video-details-page-13 .line-19 {
+  height: 2px;
+  left: 0;
+  position: absolute;
+  top: 67px;
+  width: 1319px;
+}
+
+.unprocessed-video-details-page-13 .line-20 {
+  height: 442px;
+  left: 382px;
+  position: absolute;
+  top: 0;
+  width: 2px;
+}
+
+.unprocessed-video-details-page-13 .overlap-group-3 {
+  height: 36px;
+  left: 1270px;
+  position: absolute;
+  top: 17px;
+  width: 37px;
+}
+
+.unprocessed-video-details-page-13 .vector-2 {
+  height: 31px;
+  left: 0;
+  position: absolute;
+  top: 5px;
+  width: 32px;
+}
+
+.unprocessed-video-details-page-13 .vector-3 {
+  height: 25px;
+  left: 11px;
+  position: absolute;
+  top: 0;
+  width: 26px;
+}
+
+.unprocessed-video-details-page-13 .text-8 {
+  color: var(--black);
+  font-family: var(--font-family-josefin_sans);
+  font-size: var(--font-size-m);
+  font-weight: 300;
+  height: 310px;
+  left: 529px;
+  letter-spacing: 0;
+  line-height: 42.8px;
+  position: absolute;
+  top: 581px;
+  width: 663px;
+}
+
+.unprocessed-video-details-page-13 .line-26 {
+  height: 107px;
+  left: 1379px;
+  position: absolute;
+  top: 574px;
+  width: 15px;
+}
+
+/* This is the empty block for the processButton */
+.unprocessed-video-details-page-13 .process-prompt {
+  height: 75px;
+  left: 96px;
+  pointer-events: auto;
+  position: absolute;
+  top: 670px;
+  transition: all 0.2s ease;
+  width: 100px;
+}
+
+/* This is the button styling to process the video */
+.unprocessed-video-details-page-13 .processButton {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  text-align: center;
+  background-color: #d6af00;
+  color: rgb(0, 0, 0);
+}
+
+
+
+
+.unprocessed-video-details-page-13 .process-prompt:hover {
+  box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.2);
+}
+
+.unprocessed-video-details-page-13 .overlap-group5 {
+  align-items: flex-start;
+  background-image: url(../img/upload-button@2x.svg);
+  background-size: 100% 100%;
+  display: flex;
+  height: 105px;
+  justify-content: normal;
+  left: -4px;
+  min-width: 333px;
+  padding: 10.8px 54px;
+  position: relative;
+  top: -2px;
+}
+
+.unprocessed-video-details-page-13 .process-video {
+  color: var(--grey-black);
+  font-family: var(--font-family-josefin_sans);
+  font-size: var(--font-size-xl);
+  height: 80px;
+  letter-spacing: 0.22px;
+  line-height: 42.8px;
+  text-align: center;
+  width: 223px;
+}
+
+.unprocessed-video-details-page-13 .footer {
+  background-color: var(--ebb);
+  height: 38px;
+  margin-top: 7px;
+  width: 1440px;
+}
+/* component - 79_38 */
+
+.x7938 .icon-xckXke {
+  background-color: transparent;
+  height: 25px;
+  left: 7px;
+  opacity: 1;
+  position: relative;
+  top: 8px;
+  width: 24px;
+}
+
+.x7938 .icon-muTiQF {
+  background-color: transparent;
+  height: 24px;
+  left: 1px;
+  mix-blend-mode: normal;
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  width: 23px;
+}

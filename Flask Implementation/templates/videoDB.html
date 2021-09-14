@@ -36,9 +36,11 @@
                             <th>File Name</th>
                             <th>Date Uploaded</th>
                             <th>Patient Name</th>
+                            <th>Processed</th>
                         </tr>
                     </thead>
                     <tbody>
+                        
                         {% for vid in videos %}
                          <tr>
                             <td>
@@ -50,6 +52,7 @@
                             <td>{{vid}}</td>
                             <td>DATE UPLOADED</td>
                             <td>PATIENT ID</td>
+                            <td><a href = "{{url_for('unprocessedVideo')}}"><button type="button" class="btn btn-primary">Processed</button></a></td>
                         </tr>
                         {%endfor%}
                     </tbody>
