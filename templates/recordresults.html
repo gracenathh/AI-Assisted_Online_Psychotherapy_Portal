@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+   
+       
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Patient ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                {% for patient in searchquery %}
+                <tr>
+                    <td>{{patient.id}}</td>
+                    <td>{{patient.firstname}}</td>
+                    <td>{{patient.lastname}}</td>
+                    <td>{{patient.country}}</td>
+                </tr>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+</html>

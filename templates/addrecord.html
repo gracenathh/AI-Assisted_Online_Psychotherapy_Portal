@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1>Add Record</h1>
+    </head>
+    <div>
+        <form method ="POST" action="">
+            {{form.hidden_tag()}}
+            <fieldset>
+                <div>
+                    {{ form.title.label }}
+                    {{form.title}}
+                </div>
+                
+                <div>
+                    {{ form.firstname.label }}
+                    {{form.firstname}}
+                </div>
+                <div>
+                    {{ form.lastname.label }}
+                    {{form.lastname}}
+                </div>
+                <div>
+                    {{ form.dob.label }}
+                    {{form.dob}}
+                </div>
+                <div>
+                    {{ form.city.label }}
+                    {{form.city}}
+                </div>
+                <div>
+                    {{ form.country.label }}
+                    {{form.country}}
+                </div>
+                <div>
+                    {{ form.guardiantitle.label }}
+                    {{form.guardiantitle}}
+                </div>
+                <div>
+                    {{ form.guardianfirstname.label }}
+                    {{form.guardianfirstname}}
+                </div>
+                <div>
+                    {{ form.guardianlastname.label }}
+                    {{form.guardianlastname}}
+                </div>
+                
+                <div>
+                    {{ form.email.label }}
+                    {{form.email}}
+                </div>
+                <div>
+                    {{ form.countrycode.label }}
+                    {{form.countrycode}}
+                </div>
+                <div>
+                    {{ form.phonenumber.label }}
+                    {{form.phonenumber}}
+                </div>
+
+                <div>
+                    {{ form.relationship.label }}
+                    {{form.relationship}}
+                </div>
+            </fieldset>
+            <div>
+                {{form.submit}}
+            </div>
+        </form>
+    </div>
+</html>

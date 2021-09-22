@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <div>
+        <form method ="POST" action="">
+            {{form.hidden_tag()}}
+            <fieldset>
+                <div>
+                    {{form.email.label}}
+                    {{form.email}}
+                </div>
+                <div>
+                    {{form.title.label}}
+                    {{form.title}}
+                </div>
+                <div>
+                    {{form.firstname.label}}
+                    {{form.firstname}}
+                </div>
+                <div>
+                    {{form.lastname.label}}
+                    {{form.lastname}}
+                </div>
+                <div>
+                    {{form.organization.label}}
+                    {{form.organization}}
+                </div>
+            </fieldset>
+            <div>
+                {{form.submit}}
+            </div>
+</html>
