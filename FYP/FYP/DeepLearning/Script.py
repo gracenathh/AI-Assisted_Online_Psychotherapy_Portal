@@ -33,16 +33,24 @@
 
 # #Extract face and resize
 # def extract_face(img_list, min_size = (200,200)):
-#   for i in range(len(img_list)):
-#     img = img_list[i]
+#   idx = 0 
+#   while idx < len(img_list):
+#     img = img_list[idx]
 #     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 #     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 #     faces = face_cascade.detectMultiScale(gray, scaleFactor = 1.05, minNeighbors = 5, minSize= min_size ) #, minSize = (200,200)) 
-  
+#    
 #     for (x, y, w, h) in faces:
+#       #if x == 0 or y == 0 or w == 0 or h == 0:
+#       #  print("None")
 #       faces = img[y:y + h, x:x + w]
 #       faces = cv2.resize(faces, (224,224),interpolation = cv2.INTER_AREA)
-#     img_list[i] = faces
+# 
+#     if len(faces) != 0:
+#       img_list[idx] = faces
+#       idx += 1
+#     else:
+#       img_list.pop(idx)  
 
 
 # #Splitting video into frames, extracting and resizing
