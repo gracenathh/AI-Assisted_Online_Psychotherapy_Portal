@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60))
     organization = db.Column(db.String(60))
     patientRecord = db.relationship('Patient', backref='user', lazy='select')
-    videoRecord = db.relationship('Video', backref='user', lazy='select')
+    videoRecord = db.relationship('VideoFiles', backref='user', lazy='select')
 
     def __repr__(self):
         return f"User('{self.email}')"
