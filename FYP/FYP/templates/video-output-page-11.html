@@ -10,8 +10,15 @@
     <link rel="stylesheet" type="text/css" href="../static/css/video-output-page-11.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/globals.css" />
     <meta name="author" content="AnimaApp.com - Design to code, Automated." />
+
+    <!-- Brython compiler -->
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython.min.js">
+    </script>
+
   </head>
-  <body style="margin: 0; background: #fff8f6">
+  <!-- Load brython compiler -->
+  <body style="margin: 0; background: #fff8f6" onload="brython()">
     <input type="hidden" id="anPageName" name="page" value="video-output-page-11" />
     <div class="container-center-horizontal">
       <div class="video-output-page-11 screen">
@@ -61,8 +68,39 @@
           <div class="text-4 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div>
           <img class="group-13" src="../static/img/anima/group-13@2x.svg" />
           <img class="group-14" src="../static/img/anima/group-14@2x.svg" />
-          <div class="overlap-group6">
-            <img class="video" src="../static/img/anima/video-@1x.png" />
+          
+          <script type = "text/python">
+            from browser import document, html
+
+            element = document.getElementById("test")
+
+            para = document.createElement("P")
+            text = document.createTextNode("Testing")
+            para.appendChild(text)
+            element.appendChild(para)
+
+            para = document.createElement("P")
+            text = document.createTextNode("newline")
+            para.appendChild(text)
+            element.appendChild(para)
+
+
+            progressBar = document.createElement("progress")
+            progressBar.setAttribute("id", "progressBarDL")
+            progressBar.setAttribute("value", "32")
+            progressBar.setAttribute("max", "100")
+
+            label = document.createElement("label")
+            label.setAttribute("for","progressBarDL")
+            label.setAttribute("innerHTML", "Deep Learning Processing progress:")   
+                   
+            element.appendChild(progressBar)
+            element.appendChild(label)
+
+          </script>
+
+          <div class="overlap-group6" id = test>
+              <!-- <img class="video" src="../static/img/anima/video-@1x.png" /> -->
             <div class="overlap-group-1">
               <div class="rectangle-24"></div>
               <img class="line-7" src="../static/img/anima/line-7@1x.svg" />

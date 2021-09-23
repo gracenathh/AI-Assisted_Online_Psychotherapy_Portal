@@ -1,6 +1,41 @@
 <!DOCTYPE html>
 <html>
     <a href="{{url_for('addrecordpage')}}">Add Record</a>
-    <a href="{{ url_for('patient, patient_id=patient.id')}}">{{patient.firstname}}</a>
     
+    <div>
+        <form method ="POST" action="">
+            {{form.hidden_tag()}}
+            <fieldset>
+                <div>
+                    {{form.search.label}}
+                    {{form.search}}
+                </div>
+                
+            </fieldset>
+            <div>
+                {{form.submit}}
+            </div>
+        </form>
+       
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Patient ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Country</th>
+            </tr>
+            <tr>
+                {% for patient in patients %}
+                <tr>
+                    <td>{{patient.id}}</td>
+                    <td>{{patient.firstname}}</td>
+                    <td>{{patient.lastname}}</td>
+                    <td>{{patient.country}}</td>
+                </tr>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
 </html>

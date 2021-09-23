@@ -14,10 +14,12 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120))
     #profilepicture = db.Column(db.String(20))
     title = db.Column(db.String(10))
-    fullname = db.Column(db.String(120))
+    firstname = db.Column(db.String(120))
+    lastname = db.Column(db.String(120))
     password = db.Column(db.String(60))
     organization = db.Column(db.String(60))
-    patientRecord = db.relationship('Patient', backref='therapist', lazy=True)
+    patientRecord = db.relationship('Patient', backref='user', lazy='select')
+    videoRecord = db.relationship('Video', backref='user', lazy='select')
 
     def __repr__(self):
         return f"User('{self.email}')"
@@ -29,7 +31,7 @@ class Patient(db.Model):
     lastname = db.Column(db.String(120))
     city = db.Column(db.String(120))
     country = db.Column(db.String(60))
-    dob = db.Column(db.DateTime)
+    dob = db.Column(db.Date)
     therapyid = db.Column(db.Integer, db.ForeignKey('user.id'))
     #picture = db.Column(db.string(30), default='defaultpic.jpg')
 
@@ -48,6 +50,10 @@ class VideoFiles(db.Model):
     videoID = db.Column(db.Integer, primary_key = True)
     videoName = db.Column(db.String(300), nullable = False)
     videoData = db.Column(db.LargeBinary, nullable = False)
+    uploaderid = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return f"VideoFiles('{self.videoName}')"
 
 class Variables:
     username = getpass.getuser()

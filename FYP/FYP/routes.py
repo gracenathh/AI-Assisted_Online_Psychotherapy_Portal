@@ -1,6 +1,6 @@
-from FYP.forms import LoginForm, PatientForm, RegisterForm, UpdateDetailsForm, ChangePasswordForm
+from FYP.forms import LoginForm, PatientForm, RegisterForm, UpdateDetailsForm, ChangePasswordForm, SearchPatientForm
 from flask import render_template, url_for, redirect, flash, abort, request
-from flask_login import LoginManager, login_manager, UserMixin, login_user, current_user
+from flask_login import UserMixin, login_user, current_user
 from flask_login.utils import logout_user
 from werkzeug.utils import secure_filename
 import os
@@ -34,7 +34,7 @@ def registerpage():
     if form.validate_on_submit():
         #hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         #user = User(email=form.email.data, password=hashed_password)
-        user = User(email=form.email.data, password=form.password.data)
+        user = User(email=form.email.data, password=form.password.data, firstname=form.firstname.data, lastname=form.lastname.data)
         db.session.add(user)
         db.session.commit()
         flash('Account Created')
@@ -54,7 +54,8 @@ def accountupdate():
     form = UpdateDetailsForm()
     if form.validate_on_submit():
         current_user.email = form.email.data
-        current_user.fullname = form.fullname.data
+        current_user.firstname = form.firstname.data
+        current_user.lastname = form.lastname.data
         current_user.title = form.title.data
         current_user.organization = form.organization.data
         db.session.commit()
@@ -70,10 +71,13 @@ def changepassword():
         return redirect(url_for('account'))
     return render_template('changepasswordpage.html', title='Change Password', form=form)
 
-@app.route('/user/records')
+@app.route('/user/records', methods=['GET', 'POST'])
 def userrecords():
-    patient = Patient.query.all()
-    return render_template('userrecords.html', title='Records', patient=patient)
+    search = SearchPatientForm(request.form)
+    if request.method == 'POST':
+        return recordresults(search)
+    patients = Patient.query.filter_by(therapyid = current_user.id).all()
+    return render_template('userrecords.html', title='Records', patients=patients, form=search)
 
 @app.route('/patient/new', methods=['GET', 'POST'])
 def addrecordpage():
@@ -90,6 +94,8 @@ def addrecordpage():
         db.session.commit()
         flash('Patient Record Added')
         return redirect(url_for('dashboard'))
+    else:
+        flash('Error Adding!')
     return render_template('addrecord.html', title='Add Record', form=form)
 
 @app.route('/patient/<id>', methods=["GET"])
@@ -99,6 +105,20 @@ def recordpage(patient_id):
     return render_template('patient.html', title=patient.id, patient=patient)
     #,picture=picture)
 
+@app.route('/recordsresults')
+def recordresults(search):
+    results = []
+    searchquery = search.data['search']
+
+    if search.data['search'] == '':
+        results = Patient.query.filter_by(therapyid = current_user.id).all()
+
+    if not results:
+        flash('No Matching Record!')
+        return redirect('/user/records')
+
+    else:
+        return render_template('recordresults.html', results=results)
 
 @app.route("/upload", methods=['POST', 'GET'])
 def video_upload():
@@ -162,8 +182,8 @@ def processedVideo():
     return render_template("video-output-page-11.html")
 
 
-"""
-@app.route('patient/<id>/update', methods=["GET", "POST"])
+
+@app.route('/patient/<id>/update', methods=["GET", "POST"])
 def updaterecordpage(id):
     patient = Patient.query.get_or_404(id)
     if patient.therapist != current_user:
@@ -183,16 +203,17 @@ def updaterecordpage(id):
         patient.countrycode=form.countrycode.data 
         patient.phonenumber=form.phonenumber.data
         patient.relationship=form.relationship.data
-        
+        """
         if form.picture.data:
             picture_file = storePicture(form.picture.data)
             patient.picture = picture_file
         db.session.commit()
+        """
         
         flash('Record Updated')
         return redirect(url_for('recordpage', id=patient.id))
     return render_template('updaterecord.html', title='Update Record', form=form)
-"""
+
 """
 @app.route('/patient/id/delete', methods=['POST'])
 def deleterecord(id):

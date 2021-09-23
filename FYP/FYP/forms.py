@@ -15,7 +15,9 @@ class LoginForm(FlaskForm):
 
 class RegisterForm(FlaskForm):
     email = StringField('email', validators=[DataRequired(), Email()])
-    fullname = StringField('fullname', validators=[DataRequired()])
+    firstname = StringField('firstname', validators=[DataRequired()])
+    lastname = StringField('lastname', validators=[DataRequired()])
+    organization = StringField('organization')
     password = PasswordField('password', validators=[DataRequired()])
     confirmPassword = PasswordField('confirm password', validators=[DataRequired(), EqualTo('password')])
 
@@ -57,7 +59,12 @@ class ChangePasswordForm(FlaskForm):
 class UpdateDetailsForm(FlaskForm):
     title = SelectField(u'Title', choices=[('Dr.'), ('Mr.'), ('Mrs.'), ('Ms.'), ('Mdm'), ('Miss')])
     email = StringField('email', validators=[DataRequired(), Email()])
-    fullname = StringField('fullname', validators=[DataRequired()])
+    firstname = StringField('firstname', validators=[DataRequired()])
+    lastname = StringField('lastname', validators=[DataRequired()])
     organization = StringField('organization', validators=[DataRequired()])
 
     submit = SubmitField('Update')
+
+class SearchPatientForm(FlaskForm):
+    search = StringField('search')
+    
