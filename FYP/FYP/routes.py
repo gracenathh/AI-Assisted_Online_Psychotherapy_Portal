@@ -10,6 +10,9 @@ from PIL import Image
 from FYP import app, db
 from FYP.models import User, Patient, Variables, VideoFiles
 
+
+from FYP.DeepLearning.Script import test
+
 @app.route('/', methods=['GET', 'POST'])
 def loginpage():
     form = LoginForm()
@@ -184,9 +187,20 @@ def unprocessedVideo(videoID):
 
 @app.route("/processedVideo/<int:videoID>")
 def processedVideo(videoID):
-    
+
+
     #Page for a specific video
     vid = VideoFiles.query.get_or_404(videoID)
+
+    #Perform the DL output here. Shld print here then render template with the output
+    try:    
+        print("/static/uploads/" + vid.videoName)
+
+        test()
+    except: 
+        return 'Error'
+
+
     return render_template("video-output-page-11.html",video = vid)
 
 

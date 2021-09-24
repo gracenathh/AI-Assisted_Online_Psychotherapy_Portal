@@ -15,10 +15,11 @@
     <script type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython.min.js">
     </script>
+  
 
   </head>
  
-  <body style="margin: 0; background: #fff8f6" onload="brython()">
+  <body style="margin: 0; background: #fff8f6" onload="brython(1)">
     <input type="hidden" id="anPageName" name="page" value="video-output-page-11" />
     <div class="container-center-horizontal">
       <div class="video-output-page-11 screen">
@@ -72,37 +73,11 @@
           <div class="overlap-group6" id = test>
               <!-- <img class="video" src="../static/img/anima/video-@1x.png" /> -->
             
-              <div id = "progress">
-                <!-- If there is no video processing, set this div to hidden -->
-                <script type = "text/python">
-                
-                  from browser import document, html
-
-                  element = document.getElementById("progress")
-                  
-                  para = document.createElement("P")
-                  text = document.createTextNode("Processing video progress")
-                  para.appendChild(text)
-                  element.appendChild(para)
-                  
-                  
-                  progressBar = document.createElement("progress")
-                  progressBar.setAttribute("id", "progressBarDL")
-                  progressBar.setAttribute("value", "32")
-                  progressBar.setAttribute("max", "100")
-                  
-                  label = document.createElement("label")
-                  label.setAttribute("for","progressBarDL")
-                  label.setAttribute("innerHTML", "Deep Learning Processing progress:")   
-                      
-                  element.appendChild(progressBar)
-                  element.appendChild(label)
-
-                
-
+               <!-- If there is no video processing, set this div to hidden -->
+              <!-- <div id = "progress">
+                <script type = "text/python" src="..\Script.py">                        
                 </script>
-
-              </div>
+              </div> -->
 
             <div class="overlap-group-1">
               <div class="rectangle-24"></div>

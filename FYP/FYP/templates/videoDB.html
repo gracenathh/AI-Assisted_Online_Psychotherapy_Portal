@@ -44,8 +44,10 @@
                         {% for vid in videos %}
                          <tr>
                             <td>
+                                
+                                <!--TODO: Need to fix the video playing -->
                                 <video preload="none" width="250" height="200" controls>
-                                    <source src="/static/uploads/{{vid}}"></source>
+                                    <source src="/static/uploads/{{vid.videoName}}"></source>
                                 </video>
                             </td>
                             <td>{{vid.videoID}}</td>
