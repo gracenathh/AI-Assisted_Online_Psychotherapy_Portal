@@ -11,13 +11,13 @@
     <link rel="stylesheet" type="text/css" href="../static/css/globals.css" />
     <meta name="author" content="AnimaApp.com - Design to code, Automated." />
 
-    <!-- Brython compiler -->
+     <!-- Brython compiler -->
     <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython.min.js">
+      src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython.min.js">
     </script>
 
   </head>
-  <!-- Load brython compiler -->
+ 
   <body style="margin: 0; background: #fff8f6" onload="brython()">
     <input type="hidden" id="anPageName" name="page" value="video-output-page-11" />
     <div class="container-center-horizontal">
@@ -48,7 +48,7 @@
             <div class="sad-1 valign-text-middle josefinsans-semi-bold-white-17px">SAD</div>
           </div>
           <img class="kid-picture" src="../static/img/anima/kid-picture@2x.png" />
-          <div class="text-1 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div>
+          <!-- <div class="text-1 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div> -->
           <img class="emotion-tags" src="../static/img/anima/emotion-tags@2x.svg" />
           <div class="place valign-text-middle josefinsans-normal-lynch-17-4px">HAPPY</div>
           <div class="place-1 valign-text-middle josefinsans-normal-lynch-17-4px">HAPPY</div>
@@ -61,46 +61,49 @@
             <div class="place-3 valign-text-middle josefinsans-semi-bold-white-17px">HAPPY</div>
           </div>
           <img class="group-10" src="../static/img/anima/group-10@2x.svg" />
-          <div class="text-2 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div>
+          <!-- <div class="text-2 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div> -->
           <img class="group-11" src="../static/img/anima/group-11@2x.svg" />
-          <div class="text-3 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div>
+          <!-- <div class="text-3 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div> -->
           <img class="group-12" src="../static/img/anima/group-12@2x.svg" />
-          <div class="text-4 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div>
+          <!-- <div class="text-4 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div> -->
           <img class="group-13" src="../static/img/anima/group-13@2x.svg" />
           <img class="group-14" src="../static/img/anima/group-14@2x.svg" />
-          
-          <script type = "text/python">
-            from browser import document, html
-
-            element = document.getElementById("test")
-
-            para = document.createElement("P")
-            text = document.createTextNode("Testing")
-            para.appendChild(text)
-            element.appendChild(para)
-
-            para = document.createElement("P")
-            text = document.createTextNode("newline")
-            para.appendChild(text)
-            element.appendChild(para)
-
-
-            progressBar = document.createElement("progress")
-            progressBar.setAttribute("id", "progressBarDL")
-            progressBar.setAttribute("value", "32")
-            progressBar.setAttribute("max", "100")
-
-            label = document.createElement("label")
-            label.setAttribute("for","progressBarDL")
-            label.setAttribute("innerHTML", "Deep Learning Processing progress:")   
-                   
-            element.appendChild(progressBar)
-            element.appendChild(label)
-
-          </script>
 
           <div class="overlap-group6" id = test>
               <!-- <img class="video" src="../static/img/anima/video-@1x.png" /> -->
+            
+              <div id = "progress">
+                <!-- If there is no video processing, set this div to hidden -->
+                <script type = "text/python">
+                
+                  from browser import document, html
+
+                  element = document.getElementById("progress")
+                  
+                  para = document.createElement("P")
+                  text = document.createTextNode("Processing video progress")
+                  para.appendChild(text)
+                  element.appendChild(para)
+                  
+                  
+                  progressBar = document.createElement("progress")
+                  progressBar.setAttribute("id", "progressBarDL")
+                  progressBar.setAttribute("value", "32")
+                  progressBar.setAttribute("max", "100")
+                  
+                  label = document.createElement("label")
+                  label.setAttribute("for","progressBarDL")
+                  label.setAttribute("innerHTML", "Deep Learning Processing progress:")   
+                      
+                  element.appendChild(progressBar)
+                  element.appendChild(label)
+
+                
+
+                </script>
+
+              </div>
+
             <div class="overlap-group-1">
               <div class="rectangle-24"></div>
               <img class="line-7" src="../static/img/anima/line-7@1x.svg" />
@@ -199,7 +202,7 @@
                     </div>
                   </div>
                   <div class="icon-text-2">
-                    <div class="text-area-i valign-text-middle josefinsans-semi-bold-licorice-16px">#699669</div>
+                    <div class="text-area-i valign-text-middle josefinsans-semi-bold-licorice-16px">#{{video.videoID}}</div>
                   </div>
                 </div>
                 <img class="navigation-close-2" src="../static/img/anima/navigation---close@2x.png" />
@@ -269,7 +272,7 @@
             
             <!-- Link to dashboard -->
             <a href ="{{url_for('dashboard')}}" style="text-decoration: none;" >
-              <img class="dashboard" src="static/img/anima/dashboard@2x.svg">
+              <img class="dashboard" src="../static/img/anima/dashboard@2x.svg">
             </a>
 
 
@@ -277,7 +280,7 @@
             
             <!-- Added link to the video database -->
             <a href ="{{url_for('videoDB')}}" style="text-decoration: none;" >
-              <img class="video-database" src="static/img/anima/video-database@2x.svg"> 
+              <img class="video-database" src="../static/img/anima/video-database@2x.svg"> 
             </a>
 
             <img class="your-profile" src="../static/img/anima/your-profile@2x.svg" />

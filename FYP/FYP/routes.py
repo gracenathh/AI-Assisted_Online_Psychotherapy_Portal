@@ -165,21 +165,29 @@ def play_video(filename):
 @app.route("/videoDb")
 def videoDB():
     video_data = VideoFiles.query.all()
-    video_array = []
-    for i in video_data:
-        video_array.append(i.videoName)
 
-    print(video_array)
+    # video_array = []
+    # for i in video_data:
+    #     video_array.append(i.videoName)
 
-    return render_template("videoDB.html", videos = video_array, user = Variables.username)
+    # print(video_array)
 
-@app.route("/unprocessdVideo")
-def unprocessedVideo():
-    return render_template("unprocessed-video-details-page-13.html")
+    return render_template("videoDB.html", videos = video_data, user = Variables.username)
 
-@app.route("/processedVideo")
-def processedVideo():
-    return render_template("video-output-page-11.html")
+@app.route("/unprocessedVideo/<int:videoID>")
+def unprocessedVideo(videoID):
+
+    #Page for a specific video
+    vid = VideoFiles.query.get_or_404(videoID)
+    return render_template("unprocessed-video-details-page-13.html",video = vid)
+
+
+@app.route("/processedVideo/<int:videoID>")
+def processedVideo(videoID):
+    
+    #Page for a specific video
+    vid = VideoFiles.query.get_or_404(videoID)
+    return render_template("video-output-page-11.html",video = vid)
 
 
 

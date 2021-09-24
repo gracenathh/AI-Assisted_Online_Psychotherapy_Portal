@@ -1,9 +1,6 @@
 
 #Just trying out some sample python code
 
-
-
-
 # #Imports
 # import sys
 # import cv2
@@ -31,26 +28,40 @@
 # directory = "" 
 
 
+# from browser import document, html
+
+# element = document.getElementById("test")
+
+# para = document.createElement("P")
+# text = document.createTextNode("Processing video progress")
+# para.appendChild(text)
+# element.appendChild(para)
+
+
+# progressBar = document.createElement("progress")
+# progressBar.setAttribute("id", "progressBarDL")
+# progressBar.setAttribute("value", "32")
+# progressBar.setAttribute("max", "100")
+
+# label = document.createElement("label")
+# label.setAttribute("for","progressBarDL")
+# label.setAttribute("innerHTML", "Deep Learning Processing progress:")   
+    
+# element.appendChild(progressBar)
+# element.appendChild(label)
+
 # #Extract face and resize
 # def extract_face(img_list, min_size = (200,200)):
-#   idx = 0 
-#   while idx < len(img_list):
-#     img = img_list[idx]
+#   for i in range(len(img_list)):
+#     img = img_list[i]
 #     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 #     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 #     faces = face_cascade.detectMultiScale(gray, scaleFactor = 1.05, minNeighbors = 5, minSize= min_size ) #, minSize = (200,200)) 
-#    
+  
 #     for (x, y, w, h) in faces:
-#       #if x == 0 or y == 0 or w == 0 or h == 0:
-#       #  print("None")
 #       faces = img[y:y + h, x:x + w]
 #       faces = cv2.resize(faces, (224,224),interpolation = cv2.INTER_AREA)
-# 
-#     if len(faces) != 0:
-#       img_list[idx] = faces
-#       idx += 1
-#     else:
-#       img_list.pop(idx)  
+#     img_list[i] = faces
 
 
 # #Splitting video into frames, extracting and resizing

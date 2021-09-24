@@ -48,11 +48,11 @@
                                     <source src="/static/uploads/{{vid}}"></source>
                                 </video>
                             </td>
-                            <td>VIDEO ID</td>
-                            <td>{{vid}}</td>
+                            <td>{{vid.videoID}}</td>
+                            <td>{{vid.videoName}}</td>
                             <td>DATE UPLOADED</td>
                             <td>PATIENT ID</td>
-                            <td><a href = "{{url_for('unprocessedVideo')}}"><button type="button" class="btn btn-primary">Unprocessed</button></a></td>
+                            <td><a href = "{{url_for('unprocessedVideo', videoID = vid.videoID )}}"><button type="button" class="btn btn-primary">Unprocessed</button></a></td>
                         </tr>
                         {%endfor%}
                     </tbody>
