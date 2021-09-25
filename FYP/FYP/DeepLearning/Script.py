@@ -80,7 +80,7 @@ def transform_img(img_list):
 
 
 #Predicted label and time 
-def get_label_time(arr, threshold = 0.35):
+def get_label_time(arr, threshold = 0.30):
   label_code = {0: 'anger', 1: 'disgust', 2 : 'fear', 3 : 'happy', 4 : 'sad', 5 : 'surprise'}
   to_return = []
   time_str = "" 
