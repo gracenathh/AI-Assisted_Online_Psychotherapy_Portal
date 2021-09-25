@@ -11,7 +11,7 @@ from FYP import app, db
 from FYP.models import User, Patient, Variables, VideoFiles
 
 
-from FYP.DeepLearning.Script import test
+from FYP.DeepLearning.Script import test, main
 
 @app.route('/', methods=['GET', 'POST'])
 def loginpage():
@@ -195,7 +195,8 @@ def processedVideo(videoID):
     #Perform the DL output here. Shld print here then render template with the output
     try:    
         print("/static/uploads/" + vid.videoName)
-
+        predictedresult = main("/static/uploads/" + vid.videoName)
+        print(predictedresult)
         test()
     except: 
         return 'Error'
