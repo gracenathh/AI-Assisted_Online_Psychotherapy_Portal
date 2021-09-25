@@ -13,56 +13,51 @@ import keras
 from decimal import Decimal
 import shutil
 
-
-#Global variable 
-directory = "" 
-
 def test():
     print("Reached python script")
 
 
 #Extract face and resize
 def extract_face(img_list, min_size = (200,200)):
-  for i in range(len(img_list)):
-    img = img_list[i]
+  idx = 0 
+  while idx < len(img_list):
+    img = img_list[idx]
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
     faces = face_cascade.detectMultiScale(gray, scaleFactor = 1.05, minNeighbors = 5, minSize= min_size ) #, minSize = (200,200)) 
   
     for (x, y, w, h) in faces:
+      #if x == 0 or y == 0 or w == 0 or h == 0:
+      #  print("None")
       faces = img[y:y + h, x:x + w]
       faces = cv2.resize(faces, (224,224),interpolation = cv2.INTER_AREA)
-    img_list[i] = faces
+
+    if len(faces) != 0:
+      img_list[idx] = faces
+      idx += 1
+    else:
+      img_list.pop(idx)
 
 
 # #Splitting video into frames, extracting and resizing
-def extract_images(pathIn): #, pathOut):
-    to_return = []
-    count = 0
-    vidcap = cv2.VideoCapture(pathIn)
-    success,image = vidcap.read()    #Grabs, decodes and returns the next video frame.
-    success = True
-    while success:
-        vidcap.set(cv2.CAP_PROP_POS_MSEC,(count*500))    # added this line. set() = set a property in video capture #0.167 for 6 frames per sec -> 6 img/3 sec
-        #CAP_PROP_POS_MSEC = Current position of the video file in milliseconds.
-        success,image = vidcap.read()
-        if success == True:    #If have read in a new frame
-          #cv2.imwrite(os.path.join(pathOut + "/frame_%d_.jpg" % count), image)     # save frame as JPEG file
-          to_return.append(image)
-        count = count + 1
+def slice_video(video_path):
+  sourceVideoDirectory = os.path.normpath(video_path)
 
-    return to_return #pathOut
+  to_return = []
+  count = 0
+  vidcap = cv2.VideoCapture(sourceVideoDirectory)
+  success,image = vidcap.read()    #Grabs, decodes and returns the next video frame.
+  success = True
+  while success:
+      vidcap.set(cv2.CAP_PROP_POS_MSEC,(count*500))    # added this line. set() = set a property in video capture #0.167 for 6 frames per sec -> 6 img/3 sec
+      #CAP_PROP_POS_MSEC = Current position of the video file in milliseconds.
+      success,image = vidcap.read()
+      if success == True:    #If have read in a new frame
+        #cv2.imwrite(os.path.join(pathOut + "/frame_%d_.jpg" % count), image)     # save frame as JPEG file
+        to_return.append(image)
+      count = count + 1
 
-def slice_video(video_name):
-  #directory must have been set, will be a global variable
-  sourceVideoDirectory = os.path.join(directory, video_name)
-  #targetVideoDirectory = os.path.join(directory + "sliced", video_name)
-
-  #Create the target video directory if does not exist. Reference: https://stackoverflow.com/questions/273192/how-can-i-safely-create-a-nested-directory-in-python
-  # pathlib.Path(targetVideoDirectory).mkdir(parents=True, exist_ok=True)
-
-  #Split the video into frames. 
-  return extract_images(sourceVideoDirectory) #, targetVideoDirectory)
+  return to_return
 
 
 #Data duplication
@@ -78,7 +73,6 @@ def duplicate(img_list):
 
 #Create list of images in np.arr form
 def transform_img(img_list):
-  #img_list.sort(key = lambda x : int(x[1]))
   img_list = np.asarray(img_list)
   img_list = [np.expand_dims(img,0) for img in img_list]
 
@@ -86,7 +80,8 @@ def transform_img(img_list):
 
 
 #Predicted label and time 
-def get_label_time(arr, threshold = 0.25):
+def get_label_time(arr, threshold = 0.35):
+  label_code = {0: 'anger', 1: 'disgust', 2 : 'fear', 3 : 'happy', 4 : 'sad', 5 : 'surprise'}
   to_return = []
   time_str = "" 
 
@@ -125,10 +120,10 @@ def get_label_time(arr, threshold = 0.25):
   return to_return
 
 #Main function
-def main(file_name):
+def main(directory):
   # process file
   # 1 - Slice video
-  extracted_img = slice_video(video_name)
+  extracted_img = slice_video(directory)
 
   # 2 - Extract face only & resize image
   extract_face(extracted_img)
@@ -138,6 +133,7 @@ def main(file_name):
   img_list = transform_img(extracted_img)
 
   # 5 - Do prediction
+  trainedModel = keras.models.load_model("AIPsychotherapyPortal/FYP/FYP/DeepLearning/Model.h5")
   predicted_list = []
   for i in range(0, len(img_list),6):
     input = img_list[i:i+6]
