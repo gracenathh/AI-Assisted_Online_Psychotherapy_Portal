@@ -136,7 +136,6 @@ def main(directory):
   # 5 - Do prediction
   #print(os.getcwd())
   export_path = os.path.join(os.getcwd(), 'FYP', 'DeepLearning', 'Model.h5')
-  print(export_path)
   trainedModel = keras.models.load_model(export_path)
   predicted_list = []
   for i in range(0, len(img_list),6):

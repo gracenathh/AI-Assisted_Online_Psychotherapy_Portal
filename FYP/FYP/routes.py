@@ -132,9 +132,10 @@ def video_upload():
         
         filename = secure_filename(video_file.filename)
 
-        # if not os.path.exists(".\static\uploads"):
-        #     print("")
-        #     os.makedirs(".\static\uploads")
+        #Create the directory where to store videos if it does not exist
+        videoDirectory =  os.path.join(os.getcwd(), 'FYP', 'static', 'uploads')        
+        if not os.path.exists(videoDirectory):
+            os.makedirs(videoDirectory)
 
         video_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         newVideo = VideoFiles(videoName=filename, videoData=video_file.read())
@@ -194,8 +195,8 @@ def processedVideo(videoID):
 
     #Perform the DL output here. Shld print here then render template with the output
     try:    
-        #print("/static/uploads/" + vid.videoName)
-        predictedresult = main("/static/uploads/" + vid.videoName)
+        videoDirectory =  os.path.join(os.getcwd(), 'FYP', 'static', 'uploads', vid.videoName)
+        predictedresult = main(videoDirectory)
         print(predictedresult)
         test()
 
