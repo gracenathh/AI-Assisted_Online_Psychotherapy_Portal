@@ -194,12 +194,13 @@ def processedVideo(videoID):
 
     #Perform the DL output here. Shld print here then render template with the output
     try:    
-        print("/static/uploads/" + vid.videoName)
+        #print("/static/uploads/" + vid.videoName)
         predictedresult = main("/static/uploads/" + vid.videoName)
         print(predictedresult)
         test()
-    except: 
-        return 'Error'
+
+    except Exception as e: #print error message
+         print(e)
 
 
     return render_template("video-output-page-11.html",video = vid)

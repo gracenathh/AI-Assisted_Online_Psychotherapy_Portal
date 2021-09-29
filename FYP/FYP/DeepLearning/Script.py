@@ -121,6 +121,7 @@ def get_label_time(arr, threshold = 0.30):
 
 #Main function
 def main(directory):
+
   # process file
   # 1 - Slice video
   extracted_img = slice_video(directory)
@@ -133,7 +134,10 @@ def main(directory):
   img_list = transform_img(extracted_img)
 
   # 5 - Do prediction
-  trainedModel = keras.models.load_model("AIPsychotherapyPortal/FYP/FYP/DeepLearning/Model.h5")
+  #print(os.getcwd())
+  export_path = os.path.join(os.getcwd(), 'FYP', 'DeepLearning', 'Model.h5')
+  print(export_path)
+  trainedModel = keras.models.load_model(export_path)
   predicted_list = []
   for i in range(0, len(img_list),6):
     input = img_list[i:i+6]
