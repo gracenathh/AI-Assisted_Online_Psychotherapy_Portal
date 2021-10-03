@@ -11,8 +11,14 @@
     <link rel="stylesheet" type="text/css" href="../static/css/globals.css" /> 
     <meta name="author" content="AnimaApp.com - Design to code, Automated." />
     <title>Unprocessed Video</title>
+    
+    <!-- Brython compiler -->
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython.min.js">
+    </script>
+     
   </head>
-  <body style="margin: 0; background: #fff8f6">
+  <body style="margin: 0; background: #fff8f6" onload="brython()">
     <input type="hidden" id="anPageName" name="page" value="unprocessed-video-details-page-13" />
     <div class="container-center-horizontal">
       <div class="unprocessed-video-details-page-13 screen">
@@ -161,7 +167,10 @@
           </div>
           <img class="line-26" src="../static/img/anima/line-26@2x.svg" />
           
-          <div class="process-prompt smart-layers-pointers">
+          <div class="process-prompt smart-layers-pointers" id = "processButtonBlock">
+
+            <script type = "text/python" src="..\Script.py">                        
+            </script>
           <!-- TODO change the url for to the process video template -->
           <a href = "{{url_for('processedVideo',videoID = video.videoID)}}" style="text-decoration: none;"><button class = "processButton"> Process </button></a>  
             

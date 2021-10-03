@@ -13,6 +13,10 @@ import keras
 from decimal import Decimal
 import shutil
 
+#For progress bar
+from tkinter import *
+from tkinter.ttk import * 
+
 def test():
     print("Reached python script")
 
@@ -122,16 +126,42 @@ def get_label_time(arr, threshold = 0.30):
 #Main function
 def main(directory):
 
+  #Reference: https://www.youtube.com/watch?v=0WRMYdOwHYE&ab_channel=BroCode
+  #local function to display progress bar
+  def updateProgressWindow(percentValue, percentLabel, taskLabel):
+    window.update()
+    bar["value"] = percentValue
+    percent.set(percentLabel + "%")
+    text.set(taskLabel)
+    #window.update_idletasks()
+
+  #create progress bar
+  window = Tk()
+
+  percent = StringVar()
+  text = StringVar()
+  bar = Progressbar(window, orient = HORIZONTAL, length= 300)
+  bar.pack(pady = 10) #Padding for y
+  percentLabel = Label(window, textvariable= percent).pack()
+  taskLabel = Label(window, textvariable= text).pack()
+
+
+  #Initial value of progress bar
+  updateProgressWindow(0,"0","Started processing")
+
   # process file
   # 1 - Slice video
   extracted_img = slice_video(directory)
+  updateProgressWindow(20,"20","Sliced the video into images")
 
   # 2 - Extract face only & resize image
   extract_face(extracted_img)
+  updateProgressWindow(40,"40","Extracted the face and resized")
 
   # 3 - Do data duplication & tansfrom image
   duplicate(extracted_img)
   img_list = transform_img(extracted_img)
+  updateProgressWindow(60,"60","Duplicated and transformed data")
 
   # 5 - Do prediction
   #print(os.getcwd())
@@ -143,12 +173,14 @@ def main(directory):
     yhat = trainedModel.predict(input) #Use verbose to get progress bar
     predicted_list.append((yhat.max(), np.argmax(yhat, axis=1)))
 
+  updateProgressWindow(100,"100","Finished prediction")
+  window.after(5000, window.destroy)   #Automatically destroy the window after 5 seconds if not exited
+  window.mainloop()
+
   return get_label_time(predicted_list)
 
-
-
 ##################For brython update html elems
-# from browser import document, html
+#from browser import document, html
 
 # element = document.getElementById("test")
 
