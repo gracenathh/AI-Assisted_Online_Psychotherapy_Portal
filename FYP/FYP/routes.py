@@ -139,8 +139,6 @@ def video_upload():
 
         video_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         newVideo = VideoFiles(videoName=filename, videoData=video_file.read())
-        print(newVideo.videoName)
-        print(newVideo.videoData)
         db.session.add(newVideo)
         db.session.commit()
 
@@ -189,13 +187,13 @@ def unprocessedVideo(videoID):
 @app.route("/processedVideo/<int:videoID>")
 def processedVideo(videoID):
 
-
     #Page for a specific video
     vid = VideoFiles.query.get_or_404(videoID)
 
     #Perform the DL output here. Shld print here then render template with the output
     try:    
         videoDirectory =  os.path.join(os.getcwd(), 'FYP', 'static', 'uploads', vid.videoName)
+        print(videoDirectory)
         predictedresult = main(videoDirectory)
         print(predictedresult)
         test()
@@ -203,9 +201,8 @@ def processedVideo(videoID):
     except Exception as e: #print error message
          print(e)
 
-
-    return render_template("video-output-page-11.html",video = vid)
-
+    #return render_template("video-output-page-11.html",video = vid)
+    return render_template("outputDL.html", video = vid, ouput = predictedresult)
 
 
 @app.route('/patient/<id>/update', methods=["GET", "POST"])

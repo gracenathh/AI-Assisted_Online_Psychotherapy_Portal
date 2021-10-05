@@ -1,6 +1,6 @@
 from flask_login import LoginManager, login_manager, UserMixin, login_user, current_user
 from datetime import datetime
-import getpass
+import getpass, json
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import backref, column_property
 from FYP import db, login_manager
@@ -50,6 +50,7 @@ class VideoFiles(db.Model):
     videoID = db.Column(db.Integer, primary_key = True)
     videoName = db.Column(db.String(300), nullable = False)
     videoData = db.Column(db.LargeBinary, nullable = False)
+    videoEmotion = db.Column(db.String(700), nullable = True)
     uploaderid = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):

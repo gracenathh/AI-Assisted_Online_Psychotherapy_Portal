@@ -40,7 +40,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
                         {% for vid in videos %}
                          <tr>
                             <td>
@@ -54,7 +53,7 @@
                             <td>{{vid.videoName}}</td>
                             <td>DATE UPLOADED</td>
                             <td>PATIENT ID</td>
-                            <td><a href = "{{url_for('unprocessedVideo', videoID = vid.videoID )}}"><button type="button" class="btn btn-primary">Unprocessed</button></a></td>
+                            <td><a href = "{{url_for('unprocessedVideo', videoID = vid.videoID )}}"><button style="background-color: maroon;" class="btn btn-primary">Unprocessed</button></a></td>
                         </tr>
                         {%endfor%}
                     </tbody>
