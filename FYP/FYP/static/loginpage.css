@@ -1,6 +1,209 @@
-position: relative;
-width: 1440px;
-height: 1024px;
+.loginpage {
+    
+    background-color: var(--white);
+    cursor: pointer;
+    
+    height: 1080px;
+    overflow: hidden;
+    width: 1870px;
+}
 
-background: #FFFFFF;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+header {
+    position: fixed;
+    width: 1870px;
+    height: 52px;
+    left: 0px;
+    top: 0px;
+
+    background: #ffffff;
+}
+
+header .header {
+    position: fixed;
+    width: 422.33px;
+    height: 34.99px;
+    left: 51.03px;
+    top: 8.75px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17.4958px;
+    line-height: 43px;
+    /* or 244% */
+
+    
+    align-items: center;
+    letter-spacing: 0.01em;
+
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.title {
+    position: fixed;
+    width: 685px;
+    height: 90px;
+    left: 617px;
+    top: 140px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 89px;
+    line-height: 88px;
+
+    text-align: justify;
+    letter-spacing: 0.01em;
+
+    color: rgba(0, 0, 0, 0.73);
+
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.formbox {
+    position: fixed;
+    width: 670px;
+    height: 481px;
+    left: 637px;
+    top: 405px;
+
+    background: #FFF8F7;
+    border-radius: 20px;
+}
+
+.emailinput {
+    padding: 0 12px;
+    position: fixed;
+    
+    
+    width: 408px;
+    height: 56px;
+    left: 756px;
+    top: 482px;
+
+    background: #FFFFFF;
+   
+    border: 1px solid #AEAEAE;
+    box-sizing: border-box;
+}
+
+.emaillabel {
+    
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+   
+
+   
+    align-items: center;
+    padding: 0px;
+
+    position: fixed;
+    width: 37px;
+    height: 20px;
+    left: 756px;
+    top: 465px;
+
+}
+
+.passwordinput {
+    padding: 0px;
+
+    position: fixed;
+    width: 408px;
+    height: 56px;
+    left: 756px;
+    top: 636px;
+}
+
+.passwordlabel {
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    
+    align-items: center;
+
+
+    flex-direction: column;
+
+    padding: 0px;
+
+    position: fixed;
+    width: 37px;
+    height: 20px;
+    left: 756px;
+    top: 619px;
+}
+
+.button {
+    
+    
+    justify-content: center;
+    align-items: center;
+    padding: 1px 16px;
+
+    position: fixed;
+    width: 165px;
+    height: 66px;
+    left: 889px;
+    top: 734px;
+
+    background: linear-gradient(0deg, #E6BEAE, #E6BEAE), linear-gradient(0deg, #698996, #698996), #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(59, 59, 59, 0.42);
+    border-radius: 20px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 32px;
+    
+
+    text-align: center;
+
+    color: #FFFFFF;
+
+}
+
+.register {
+    position: fixed;
+    width: 129px;
+    height: 40px;
+    left: 907px;
+    top: 821px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 32px;
+    /* or 114% */
+    align-items: center;
+    text-align: center;
+    text-decoration-line: underline;
+}
+
+.footer {
+    position: absolute;
+    width: 1920px;
+    height: 30px;
+    left: 0px;
+    top: 937px;
+
+    /* Light Sand */
+
+    background: #EEE4E1;
+}
+
+.error {
+    font-family: Josefin Sans;
+    color: #310e0e;
+    text-align: center;
+    text-decoration: bold;
+
+    font-size: 20px;
+}
