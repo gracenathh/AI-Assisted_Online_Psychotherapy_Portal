@@ -1,51 +1,56 @@
 <!DOCTYPE html> 
 <html>
-<link rel="stylesheet" type ="text/css" href="{{ url_for('static', filename='loginpage.css') }}">
-<head>
-    <h1>PSYCHOTHERAPY PORTAL</h1>
-</head>
-<div>
-    <form method ="POST" action="">
-        {{form.hidden_tag()}}
-        <fieldset>
-            <div class="form-group">
-                {{ form.email.label(class="form-control-label") }}
 
-                {% if form.email.errors %}
-                    {{ form.email(class="form-control form-control-lg is-invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.email.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                    {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
-                    {% endif %}
-                <div class="form-group">
-                    {{ form.password.label(class="form-control-label") }}
-        
-                    {% if form.password.errors %}
-                        {{ form.password(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.password.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.password(class="form-control form-control-lg") }}
-                    {% endif %}
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, maximum-scale=1.0" />
+    <link rel="stylesheet" type ="text/css" href="{{ url_for('static', filename='loginpage.css') }}">
+    <link rel="stylesheet" type="text/css" href="static/css/styleguide.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/globals.css" />
+</head>
+
+<body style="margin: 0; background: #ffffff; background-image: url('static/img/bg1.png');">
+    <div class="container-center-horizontal">
+        <header><p class="header">PSYCHOTHERAPY PORTAL</p></header>
+        <h1 class="title">PSYCHOTHERAPY PORTAL</h1>
+        <div class ="formbox">
+        <form method ="POST" action="">
+            {{form.hidden_tag()}}
+            
+            <fieldset>
+
+                <div>
+                    {{form.email.label (class ="emaillabel")}}
+                    {{form.email (class = "emailinput")}}
                 </div>
-        </fieldset>
+                
+                <div>
+                    {{form.password.label (class = "passwordlabel")}}
+                    {{form.password (class = "passwordinput")}}
+                </div>
+
+            </fieldset>
+
+            <div>
+                {{form.submit (class="button")}}
+            </div>
+
+        </form>
+
+        {% for mesg in get_flashed_messages() %}
+        <h1 class ="error">{{ mesg }}</h1>
+        {% endfor %}
+
         <div>
-            {{form.submit}}
+            <small class="register">
+                <a href="{{ url_for('registerpage') }}">Register </href>
+            </small>
         </div>
-    </form>
-    <div>
-        <small>
-            <a href="{{ url_for('registerpage') }}">Register </href>
-        </small>
+
+        </div>
     </div>
-</div>
+    <div class="footer"></div>
+</body>
 
 </html>
 
