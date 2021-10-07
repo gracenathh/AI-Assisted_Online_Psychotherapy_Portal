@@ -1,3 +1,4 @@
+from flask.app import Flask
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.fields.core import DateTimeField, FormField, IntegerField, SelectField
@@ -8,18 +9,19 @@ from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from FYP.models import User
 
 class LoginForm(FlaskForm):
-    email = StringField('email', validators=[DataRequired(), Email()])
-    password = PasswordField('password', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
 
     submit = SubmitField('Login')
 
 class RegisterForm(FlaskForm):
-    email = StringField('email', validators=[DataRequired(), Email()])
-    firstname = StringField('firstname', validators=[DataRequired()])
-    lastname = StringField('lastname', validators=[DataRequired()])
-    organization = StringField('organization')
-    password = PasswordField('password', validators=[DataRequired()])
-    confirmPassword = PasswordField('confirm password', validators=[DataRequired(), EqualTo('password')])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    title = SelectField(u'Title', choices=[('Dr.'), ('Mr.'), ('Mrs.'), ('Ms.'), ('Mdm'), ('Miss')])
+    firstname = StringField('First Name', validators=[DataRequired()])
+    lastname = StringField('Last Name', validators=[DataRequired()])
+    organization = StringField('Organization')
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirmPassword = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
 
     submit = SubmitField('Register')
 
@@ -32,39 +34,50 @@ class RegisterForm(FlaskForm):
 
 
 class PatientForm(FlaskForm):
-    title = SelectField(u'title', choices=[('Mr.'), ('Miss')])
-    firstname = StringField('firstname', validators=[DataRequired()])
-    lastname = StringField('lastname', validators=[DataRequired()])
-    dob = DateTimeField('dob', format='%d%m%y')
-    city = StringField('city')
-    country = StringField('country')
+    gender = SelectField(u'Gender', choices=[('Male'), ('Female')])
+    firstname = StringField('First Name', validators=[DataRequired()])
+    lastname = StringField('Last Name', validators=[DataRequired()])
+    age = IntegerField('Age in Years')
+    country = StringField('Country')
     #picture = FileField('Upload Picture', validators=[FileAllowed(['.jpg', 'png'])])
 
-    guardiantitle = SelectField(u'title', choices=[('Dr.'), ('Mr.'), ('Mrs.'), ('Ms.'), ('Mdm'), ('Miss')])
-    guardianfirstname = StringField('guardianfirstname', validators=[DataRequired()])
-    guardianlastname = StringField('guardianlastname', validators=[DataRequired()])
-    relationship = SelectField(u'relationship', choices=[('Parent'), ('Sibling'), ('Grandparent'), ('Guardian')])
-    email = StringField('email', validators=[Email()])
-    countrycode = IntegerField('countrycode')
-    phonenumber = IntegerField('phonenumber')
+    guardiantitle = SelectField(u'Title', choices=[('Dr.'), ('Mr.'), ('Mrs.'), ('Ms.'), ('Mdm'), ('Miss')])
+    guardianfirstname = StringField('First Name', validators=[DataRequired()])
+    guardianlastname = StringField('Last Name', validators=[DataRequired()])
+    relationship = SelectField(u'Relationship', choices=[('Parent'), ('Sibling'), ('Grandparent'), ('Guardian')])
+    email = StringField('Email', validators=[Email()])
 
     submit = SubmitField('Add Record')
 
 class ChangePasswordForm(FlaskForm):
-    password = PasswordField('password', validators=[DataRequired()])
-    confirmpassword = PasswordField('confirm password', validators=[DataRequired(), EqualTo('password')])
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirmpassword = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
 
     submit = SubmitField('Change Password')
 
 class UpdateDetailsForm(FlaskForm):
     title = SelectField(u'Title', choices=[('Dr.'), ('Mr.'), ('Mrs.'), ('Ms.'), ('Mdm'), ('Miss')])
-    email = StringField('email', validators=[DataRequired(), Email()])
-    firstname = StringField('firstname', validators=[DataRequired()])
-    lastname = StringField('lastname', validators=[DataRequired()])
-    organization = StringField('organization', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    firstname = StringField('First Name', validators=[DataRequired()])
+    lastname = StringField('Last Name', validators=[DataRequired()])
+    organization = StringField('Organization', validators=[DataRequired()])
 
     submit = SubmitField('Update')
 
 class SearchPatientForm(FlaskForm):
-    search = StringField('search')
+    search = StringField('Search')
     
+class RequestResetForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError('Email Does Not Exist. Please enter the email you have registered with.')
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('New Password', validators=[DataRequired()])
+    confirmpassword = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+
+    submit = SubmitField('Reset Password')
