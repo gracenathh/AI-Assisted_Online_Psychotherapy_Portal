@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Deep Learning Model Output</title>
+    <!-- Bootstrap CSS -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+
+<body>
+    <center>
+        <div class="container mt-5">
+            <video id="myvideo" preload="none" width="697" height="386" controls>
+                <source src="/static/uploads/{{video.videoName}}">
+                </source>
+            </video>
+        </div>
+    </center>
+
+    <div class="container mt-5">
+        <div class="container mb-5">
+            <div class="row">
+                <div class="col">
+
+                    <table class="table table-striped table-hover; width:auto">
+                        <thead class="table-dark">
+                            <tr>
+                                <th class="text-center">Video Timestamp</th>
+                                <th class="text-center">Emotion Tagged</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for vid in ouput %}
+                            <tr>
+                                <td class="text-center">
+                                    <button id = "jump" type="button" class="btn btn-primary" value="{{vid[1]}}">{{vid[1]}}</button>
+                                </td>
+                                <td class="text-center" style="text-transform: uppercase;">{{vid[0]}}</td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <a class="d-flex justify-content-center d-none" href="{{url_for('videoDB')}}">Back to Database</a>
+
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+            crossorigin="anonymous"></script>
+        <script>
+            var myvideo = document.getElementById('myvideo'),
+            jumplink = document.getElementById('jump');
+
+            jumplink.addEventListener("click", function (event) {
+            event.preventDefault();
+            myvideo.play();
+            myvideo.pause();
+            myvideo.currentTime = hmsToSecondsOnly(this.value);
+            myvideo.play();            
+        }, false);
+    
+
+            function hmsToSecondsOnly(str) {
+                var p = str.split(':'),
+                    s = 0, m = 1;
+
+                while (p.length > 0) {
+                    s += m * parseInt(p.pop(), 10);
+                    m *= 60;
+                }
+
+                return s;
+            }
+
+        </script>
+
+</body>
+
+</html>

@@ -11,6 +11,12 @@
     <link rel="stylesheet" type="text/css" href="../static/css/globals.css" /> 
     <meta name="author" content="AnimaApp.com - Design to code, Automated." />
     <title>Unprocessed Video</title>
+
+
+ <!-- Brython compiler -->
+ <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython.min.js">
+</script>
   </head>
   <body style="margin: 0; background: #fff8f6">
     <input type="hidden" id="anPageName" name="page" value="unprocessed-video-details-page-13" />
@@ -20,18 +26,18 @@
           <div class="overlap-group">
             <img
               class="x68e419f50db202b-ovebg-preview-1"
-              src="static/img/anima/68e419f50db202b56f4c91281c89621e-removebg-preview-1@1x.png"
+              src="../static/img/anima/68e419f50db202b56f4c91281c89621e-removebg-preview-1@1x.png"
             />
             <img
               class="x68e419f50db202b-ovebg-preview-2"
-              src="static/img/anima/68e419f50db202b56f4c91281c89621e-removebg-preview-2@1x.png"
+              src="../static/img/anima/68e419f50db202b56f4c91281c89621e-removebg-preview-2@1x.png"
             />
           </div>
           <div class="overlap-group2">
-            <img class="video" src="static/img/anima/video-@1x.png" />
+            <img class="video" src="../static/img/anima/video-@1x.png" />
             <div class="overlap-group-1">
               <div class="rectangle-24"></div>
-              <img class="line-7" src="static/img/anima/line-7@1x.svg" />
+              <img class="line-7" src="../static/img/anima/line-7@1x.svg" />
               <div class="text-1 valign-text-middle">00:01:02</div>
               <div class="text-2 valign-text-middle">01:08:17</div>
               <div class="ellipse-3"></div>
@@ -42,33 +48,39 @@
                 <div class="rectangle-33"></div>
                 <div class="rectangle-34"></div>
               </div>
-              <img class="line-8" src="static/img/anima/line-8@2x.svg" />
+              <img class="line-8" src="../static/img/anima/line-8@2x.svg" />
               <div class="ellipse-2"></div>
             </div>
-            <div class="overlap-group1">
+
+            <!-- <div class="overlap-group1">
               <div class="rectangle-25"></div>
-              <img class="polygon-4" src="static/img/anima/polygon-4@2x.svg" />
+              <img class="polygon-4" src="../static/img/anima/polygon-4@2x.svg" />
               <div class="sad valign-text-middle">SAD</div>
-            </div>
+            </div> -->
+          
           </div>
+
+
+
+          <!-- Need to add the video here in this div -->
           <div class="overlap-group-2">
             <div class="random-dot-logo border-0-5px-white"></div>
-            <img class="psychotherapy-portal" src="static/img/anima/psychotherapy-portal@2x.svg" />
+            <img class="psychotherapy-portal" src="../static/img/anima/psychotherapy-portal@2x.svg" />
 
             <a href ="{{url_for('dashboard')}}" style="text-decoration: none;" >
-              <img class="dashboard" src="static/img/anima/dashboard@2x.svg">
+              <img class="dashboard" src="../static/img/anima/dashboard@2x.svg">
             </a>
 
-            <img class="patient-records" src="static/img/anima/patient-records@2x.svg" />
+            <img class="patient-records" src="../static/img/anima/patient-records@2x.svg" />
             <!-- Added link to the video database -->
             <a href ="{{url_for('videoDB')}}" style="text-decoration: none;" >
-              <img class="video-database" src="static/img/anima/video-database@2x.svg"> 
+              <img class="video-database" src="../static/img/anima/video-database@2x.svg"> 
             </a>
 
 
-            <img class="your-profile" src="static/img/anima/your-profile@2x.svg" />
+            <img class="your-profile" src="../static/img/anima/your-profile@2x.svg" />
             <div class="x7938 component component-wrapper not-ready">
-              <div class="icon-xckXke"><img class="icon-muTiQF" src="static/img/anima/icon@2x.svg" /></div>
+              <div class="icon-xckXke"><img class="icon-muTiQF" src="../static/img/anima/icon@2x.svg" /></div>
             </div>
             <script defer>
               document.querySelector(".x7938.component-wrapper").timeline_data = [
@@ -112,53 +124,56 @@
                 },
               ];
             </script>
-          </div>
+          </div> 
           <!-- <img class="line-16" src="static/img/line-16@2x.svg" /> -->
           <div class="rectangle-27"></div>
-          <img class="rectangle-28" src="static/img/anima/rectangle-28@1x.svg" />
+          <img class="rectangle-28" src="../static/img/anima/rectangle-28@1x.svg" />
           <div class="video-id valign-text-middle josefinsans-normal-black-20px">VIDEO ID</div>
           <div class="text-3 valign-text-middle josefinsans-normal-black-20px">10:45:57 - 11:54:20</div>
           <div class="name valign-text-middle josefinsans-normal-black-20px">Jane Davis</div>
           <div class="phone valign-text-middle josefinsans-normal-black-20px">#123456789</div>
           <div class="x20th-march-2021 valign-text-middle josefinsans-normal-black-20px">20th March 2021</div>
-          <div class="davis20032021mp4 valign-text-middle josefinsans-normal-black-20px">Davis_20032021.mp4</div>
-          <div class="phone-1 valign-text-middle josefinsans-normal-black-20px">#699669</div>
-          <img class="line-18" src="static/img/anima/line-18@1x.svg" />
+          <div class="davis20032021mp4 valign-text-middle josefinsans-normal-black-20px">{{video.videoName}}</div>
+          <div class="phone-1 valign-text-middle josefinsans-normal-black-20px">#{{video.videoID}}</div>
+          <img class="line-18" src="../static/img/anima/line-18@1x.svg" />
           <div class="date-uploaded valign-text-middle josefinsans-normal-black-20px">DATE UPLOADED</div>
           <div class="session-timing valign-text-middle josefinsans-normal-black-20px">SESSION TIMING</div>
           <div class="patient-name valign-text-middle josefinsans-normal-black-20px">PATIENT NAME</div>
           <div class="patient-id valign-text-middle josefinsans-normal-black-20px">PATIENT ID</div>
           <div class="file-name valign-text-middle josefinsans-normal-black-20px">FILE NAME</div>
-          <img class="video-details" src="static/img/anima/video-details@2x.svg" />
+          <img class="video-details" src="../static/img/anima/video-details@2x.svg" />
           <div class="overlap-group3">
-            <img class="vector" src="static/img/anima/vector@2x.svg" />
-            <img class="vector-1" src="static/img/anima/vector-1@2x.svg" />
+            <img class="vector" src="../static/img/anima/vector@2x.svg" />
+            <img class="vector-1" src="../static/img/anima/vector-1@2x.svg" />
           </div>
-          <div class="overlap-group4">
-            <!-- <div class="text-4 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div> -->
-            <img class="emotion-tags" src="static/img/anima/emotion-tags@2x.svg" />
-            <img class="remarks" src="static/img/anima/remarks@2x.svg" />
-            <!-- <div class="text-5 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div>
-            <div class="text-6 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div>
-            <div class="text-7 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div> -->
-            <div class="overlap-group1-1">
-              <img class="line-19" src="static/img/anima/line-19@1x.svg" />
-              <img class="line-20" src="static/img/anima/line-20@2x.svg" />
-            </div>
-            <div class="overlap-group-3">
-              <img class="vector-2" src="static/img/anima/vector-2@2x.svg" />
-              <img class="vector-3" src="static/img/anima/vector-3@2x.svg" />
-            </div>
-          </div>
-          <div class="text-8 valign-text-middle">
-            Placeholder
-          </div>
-          <img class="line-26" src="static/img/anima/line-26@2x.svg" />
-          
           <div class="process-prompt smart-layers-pointers">
-          <!-- TODO change the url for to the process video template -->
-          <a href = "{{url_for('processedVideo')}}" style="text-decoration: none;"><button class = "processButton"> Process </button></a>  
+            <div class="overlap-group4">
+              <!-- <div class="text-4 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div> -->
+              <img class="emotion-tags" src="../static/img/anima/emotion-tags@2x.svg" />
+              <img class="remarks" src="../static/img/anima/remarks@2x.svg" />
+              <!-- <div class="text-5 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div>
+              <div class="text-6 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div>
+              <div class="text-7 valign-text-middle josefinsans-semi-bold-white-15-4px">01:54</div> -->
+              <div class="overlap-group1-1">
+                <img class="line-19" src="../static/img/anima/line-19@1x.svg" />
+                <img class="line-20" src="../static/img/anima/line-20@2x.svg" />
+              </div>
+              <div class="overlap-group-3">
+                <img class="vector-2" src="../static/img/anima/vector-2@2x.svg" />
+                <img class="vector-3" src="../static/img/anima/vector-3@2x.svg" />
+              </div>
+            </div>
+            <div class="text-8 valign-text-middle">
+              Placeholder
+            </div>
+            <img class="line-26" src="../static/img/anima/line-26@2x.svg" />
             
+            <div class="process-prompt smart-layers-pointers" id = "processButtonBlock">
+  
+              <script type = "text/python" src="..\Script.py">                        
+              </script>
+          <!-- TODO change the url for to the process video template -->
+          <a href = "{{url_for('processedVideo',videoID = video.videoID)}}" style="text-decoration: none;"><button class = "processButton"> Process </button></a>            
           </div>
         </div>
         <div class="footer border-1px-white"></div>
