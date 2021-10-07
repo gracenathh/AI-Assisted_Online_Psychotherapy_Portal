@@ -3,11 +3,13 @@
 
 from flask import Flask
 from os.path import join, dirname, realpath
+import os
 from flask_sqlalchemy import SQLAlchemy, declarative_base
 from sqlalchemy.schema import MetaData
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
+from flask_mail import Mail
 
 VIDEO_UPLOADER = join(dirname(realpath(__file__)), 'static/uploads/')
 
@@ -21,7 +23,13 @@ db = SQLAlchemy(app)
 migrate=Migrate(app,db, render_as_batch=True)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
+app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS']= True
+app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
+mail = Mail(app)
 
+"""
 meta = MetaData(naming_convention={
         "ix": "ix_%(column_0_label)s",
         "uq": "uq_%(table_name)s_%(column_0_name)s",
@@ -30,7 +38,7 @@ meta = MetaData(naming_convention={
         "pk": "pk_%(table_name)s"
       })
 Base = declarative_base(metadata=meta)
-
+"""
 
 from FYP import routes
 

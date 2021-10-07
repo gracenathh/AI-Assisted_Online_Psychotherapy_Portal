@@ -1,4 +1,4 @@
-from FYP.forms import LoginForm, PatientForm, RegisterForm, UpdateDetailsForm, ChangePasswordForm, SearchPatientForm
+from FYP.forms import LoginForm, PatientForm, RegisterForm, UpdateDetailsForm, ChangePasswordForm, SearchPatientForm, RequestResetForm, ResetPasswordForm
 from flask import render_template, url_for, redirect, flash, abort, request
 from flask_login import UserMixin, login_user, current_user
 from flask_login.utils import logout_user
@@ -7,8 +7,11 @@ import os
 import re
 import secrets
 from PIL import Image
-from FYP import app, db
+from FYP import app, db, mail
 from FYP.models import User, Patient, Variables, VideoFiles
+from flask_mail import Message
+
+from FYP.DeepLearning.Script import test, main
 
 @app.route('/', methods=['GET', 'POST'])
 def loginpage():
@@ -20,7 +23,7 @@ def loginpage():
             login_user(user)
             return redirect(url_for('dashboard'))
         else:
-            flash('Login Unsuccessful')
+            flash('Login Unsuccessful. Please Try Again.')
     return render_template('loginpage.html', title='login', form=form)
 
 @app.route('/logout')
@@ -34,12 +37,45 @@ def registerpage():
     if form.validate_on_submit():
         #hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         #user = User(email=form.email.data, password=hashed_password)
-        user = User(email=form.email.data, password=form.password.data, firstname=form.firstname.data, lastname=form.lastname.data)
+        user = User(email=form.email.data, password=form.password.data, firstname=form.firstname.data, lastname=form.lastname.data, organization=form.organization.data, title=form.title.data)
         db.session.add(user)
         db.session.commit()
         flash('Account Created')
         return redirect(url_for('loginpage'))
     return render_template('registerpage.html', title ='Register', form=form)
+
+def sendresetemail(user):
+    token = user.get_reset_token()
+    msg = Message('Password Reset Request', sender='noreply@psychportal.com', reciepients=[user.email])
+    msg.body = f'''If you have requested to reset your password, please click the following link:
+    {url_for('reset_token', token=token, _external=True)}
+    If you did not request this, please ignore this email. 
+    Thank you.'''
+    mail.send(msg)
+
+@app.route('/resetpassword', methods=['GET','POST'])
+def resetrequestpage():
+    form = RequestResetForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        sendresetemail(user)
+        flash('An email has been sent to your registered email address')
+        return redirect(url_for('loginpage'))
+    return render_template('resetrequestpage.html', title='Reset Request', form=form)
+
+@app.route('/resetpassword/<token>', methods=['GET', 'POST'])
+def resetoken(token):
+    user = User.verify_reset_token(token)
+    if user is None:
+        flash('Invalid or expired token, please request to reset your password again')
+        return redirect(url_for('resetrequestpage'))
+    form=ResetPasswordForm()
+    if form.validate_on_submit():
+        user.password = form.password.data
+        db.session.commit()
+        flash('Your password has been updated!')
+        return redirect(url_for('loginpage'))
+    return render_template('resettoken.html', title='Reset Password', form=form)
 
 @app.route('/dashboard')
 def dashboard():
@@ -83,8 +119,8 @@ def userrecords():
 def addrecordpage():
     form = PatientForm()
     if form.validate_on_submit():
-        patient = Patient(title = form.title.data, firstname=form.firstname.data, lastname=form.lastname.data, city=form.city.data, country=form.country.data,  dob=form.dob.data, guardiantitle=form.guardiantitle.data,
-            guardianfirstname=form.guardianfirstname.data, guardianlastname=form.guardianlastname.data, email=form.email.data, countrycode=form.countrycode.data, phonenumber=form.phonenumber.data, relationship=form.relationship.data)
+        patient = Patient( firstname=form.firstname.data, lastname=form.lastname.data, gender=form.gender.data, country=form.country.data,  age=form.age.data, guardiantitle=form.guardiantitle.data,
+            guardianfirstname=form.guardianfirstname.data, guardianlastname=form.guardianlastname.data, email=form.email.data, relationship=form.relationship.data)
         
         #if form.picture.data:
             #picture_file = storePicture(form.picture.data)
@@ -98,7 +134,7 @@ def addrecordpage():
         flash('Error Adding!')
     return render_template('addrecord.html', title='Add Record', form=form)
 
-@app.route('/patient/<id>', methods=["GET"])
+@app.route('/patient/<int:patient_id>', methods=["GET"])
 def recordpage(patient_id):
     patient = Patient.query.get_or_404(patient_id)
     #picture = url_for('static', filename='images/' + patient.id)
@@ -129,14 +165,13 @@ def video_upload():
         
         filename = secure_filename(video_file.filename)
 
-        # if not os.path.exists(".\static\uploads"):
-        #     print("")
-        #     os.makedirs(".\static\uploads")
+       #Create the directory where to store videos if it does not exist
+        videoDirectory =  os.path.join(os.getcwd(), 'FYP', 'static', 'uploads')        
+        if not os.path.exists(videoDirectory):
+            os.makedirs(videoDirectory)
 
         video_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         newVideo = VideoFiles(videoName=filename, videoData=video_file.read())
-        print(newVideo.videoName)
-        print(newVideo.videoData)
         db.session.add(newVideo)
         db.session.commit()
 
@@ -165,21 +200,39 @@ def play_video(filename):
 @app.route("/videoDb")
 def videoDB():
     video_data = VideoFiles.query.all()
-    video_array = []
-    for i in video_data:
-        video_array.append(i.videoName)
+    #video_array = []
+    #for i in video_data:
+     #   video_array.append(i.videoName)
 
-    print(video_array)
+    #print(video_array)
 
-    return render_template("videoDB.html", videos = video_array, user = Variables.username)
+    return render_template("videoDB.html", user = Variables.username)
+    # videos = video_array,
 
-@app.route("/unprocessdVideo")
-def unprocessedVideo():
-    return render_template("unprocessed-video-details-page-13.html")
+@app.route("/unprocessdVideo/<int:videoID>")
+def unprocessedVideo(videoID):
+    vid = VideoFiles.query.get_or_404(videoID)
+    return render_template("unprocessed-video-details-page-13.html",video = vid)
 
-@app.route("/processedVideo")
-def processedVideo():
-    return render_template("video-output-page-11.html")
+@app.route("/processedVideo/<int:videoID>")
+def processedVideo(videoID):
+    #Page for a specific video
+    vid = VideoFiles.query.get_or_404(videoID)
+
+    #Perform the DL output here. Shld print here then render template with the output
+    try:    
+        videoDirectory =  os.path.join(os.getcwd(), 'FYP', 'static', 'uploads', vid.videoName)
+        print(videoDirectory)
+        predictedresult = main(videoDirectory)
+        print(predictedresult)
+        test()
+
+    except Exception as e: #print error message
+         print(e)
+
+    #return render_template("video-output-page-11.html",video = vid)
+    return render_template("outputDL.html", video = vid, ouput = predictedresult)
+
 
 
 
@@ -190,18 +243,17 @@ def updaterecordpage(id):
         abort(403)
     form = PatientForm()
     if form.validate_on_submit():
-        patient.title = form.title.data 
+        patient.gender = form.gender.data 
         patient.firstname=form.firstname.data 
         patient.lastname=form.lastname.data 
-        patient.city=form.city.data
+        patient.age=form.age.data
         patient.country=form.country.data
-        patient.dob=form.dob.data 
+        
         patient.guardiantitle=form.guardiantitle.data
         patient.guardianfirstname=form.guardianfirstname.data
         patient.guardianlastname=form.guardianlastname.data
         patient.email=form.email.data
-        patient.countrycode=form.countrycode.data 
-        patient.phonenumber=form.phonenumber.data
+        
         patient.relationship=form.relationship.data
         """
         if form.picture.data:
@@ -212,7 +264,7 @@ def updaterecordpage(id):
         
         flash('Record Updated')
         return redirect(url_for('recordpage', id=patient.id))
-    return render_template('updaterecord.html', title='Update Record', form=form)
+    return render_template('updaterecordpage.html', title='Update Record', form=form)
 
 """
 @app.route('/patient/id/delete', methods=['POST'])
