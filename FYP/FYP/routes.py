@@ -200,13 +200,13 @@ def play_video(filename):
 @app.route("/videoDb")
 def videoDB():
     video_data = VideoFiles.query.all()
-    #video_array = []
-    #for i in video_data:
-     #   video_array.append(i.videoName)
+    # video_array = []
+    # for i in video_data:
+    #    video_array.append(i.videoName)
 
-    #print(video_array)
+    # print(video_array)
 
-    return render_template("videoDB.html", user = Variables.username)
+    return render_template("videoDB.html", user = Variables.username, videos = video_data)
     # videos = video_array,
 
 @app.route("/unprocessdVideo/<int:videoID>")

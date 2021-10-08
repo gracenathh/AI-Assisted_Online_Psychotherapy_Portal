@@ -36,7 +36,7 @@
                             {% for vid in ouput %}
                             <tr>
                                 <td class="text-center">
-                                    <button id = "jump" type="button" class="btn btn-primary" value="{{vid[1]}}">{{vid[1]}}</button>
+                                    <button id = "jump{{ loop.index }}" type="button" class="btn btn-primary" value="{{vid[1]}}">{{vid[1]}}</button>
                                 </td>
                                 <td class="text-center" style="text-transform: uppercase;">{{vid[0]}}</td>
                             </tr>
@@ -55,15 +55,20 @@
             crossorigin="anonymous"></script>
         <script>
             var myvideo = document.getElementById('myvideo'),
-            jumplink = document.getElementById('jump');
 
-            jumplink.addEventListener("click", function (event) {
-            event.preventDefault();
-            myvideo.play();
-            myvideo.pause();
-            myvideo.currentTime = hmsToSecondsOnly(this.value);
-            myvideo.play();            
-        }, false);
+            // jumplink = document.getElementById('jump');
+            jumplink = document.getElementsByClassName("btn btn-primary"); //Get a collection of html elements by class name
+
+            for (var i = 0; i< jumplink.length; i ++ ){
+
+                jumplink[i].addEventListener("click", function (event) {
+                event.preventDefault();
+                myvideo.play();
+                myvideo.pause();
+                myvideo.currentTime = hmsToSecondsOnly(this.value);
+                myvideo.play();            
+                }, false);
+            }
     
 
             function hmsToSecondsOnly(str) {
