@@ -218,20 +218,27 @@ def unprocessedVideo(videoID):
 def processedVideo(videoID):
     #Page for a specific video
     vid = VideoFiles.query.get_or_404(videoID)
+    if vid.videoEmotion == None: #If did not process the video before
+        #Perform the DL output here. Shld print here then render template with the output
+        try:    
+            videoDirectory =  os.path.join(os.getcwd(), 'FYP', 'static', 'uploads', vid.videoName)
+            print(videoDirectory)
+            predictedresult = main(videoDirectory)
+            #print(predictedresult)
 
-    #Perform the DL output here. Shld print here then render template with the output
-    try:    
-        videoDirectory =  os.path.join(os.getcwd(), 'FYP', 'static', 'uploads', vid.videoName)
-        print(videoDirectory)
-        predictedresult = main(videoDirectory)
-        print(predictedresult)
-        test()
+            #Store the results in the database
+            vid.videoEmotion = predictedresult
+            db.session.commit()
 
-    except Exception as e: #print error message
-         print(e)
+        except Exception as e: #print error message
+            print(e)
+
+    #Query the results from the database
+    queriedResults = VideoFiles.query.get_or_404(videoID).videoEmotion
+    print(queriedResults)
 
     #return render_template("video-output-page-11.html",video = vid)
-    return render_template("outputDL.html", video = vid, ouput = predictedresult)
+    return render_template("outputDL.html", video = vid, ouput = queriedResults)
 
 
 

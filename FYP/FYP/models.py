@@ -63,7 +63,7 @@ class VideoFiles(db.Model):
     videoName = db.Column(db.String(300), nullable = False)
     videoData = db.Column(db.LargeBinary, nullable = False)
     uploaderid = db.Column(db.Integer, db.ForeignKey('user.id'))
-    videoEmotion = db.Column(db.String(700), nullable = True)
+    videoEmotion = db.Column(db.PickleType, nullable = True)
 
     def __repr__(self):
         return f"VideoFiles('{self.videoName}')"

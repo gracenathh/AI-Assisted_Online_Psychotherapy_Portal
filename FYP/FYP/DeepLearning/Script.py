@@ -174,7 +174,7 @@ def main(directory):
     predicted_list.append((yhat.max(), np.argmax(yhat, axis=1)))
 
   updateProgressWindow(100,"100","Finished prediction")
-  window.after(5000, window.destroy)   #Automatically destroy the window after 5 seconds if not exited
+  window.after(2000, window.destroy)   #Automatically destroy the window after 2 seconds if not exited
   window.mainloop()
 
 
