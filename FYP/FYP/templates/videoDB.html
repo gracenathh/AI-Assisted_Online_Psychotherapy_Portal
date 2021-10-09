@@ -58,7 +58,7 @@
                             {%  if vid.videoEmotion == None %}
                                 <td><a href = "{{url_for('processedVideo', videoID = vid.videoID )}}"><button style="background-color: maroon;" class="btn btn-primary">Unprocessed</button></a></td>
                             {% else %}
-                                <td><a href = "{{url_for('processedVideo', videoID = vid.videoID )}}"><button style="background-color: rgb(1, 65, 168);" class="btn btn-primary">Processed</button></a></td>
+                                <td><a href = "{{url_for('processedVideo', videoID = vid.videoID )}}"><button class="btn btn-success">Processed</button></a></td>
                             {% endif %}
                         
                         </tr>

@@ -36,7 +36,7 @@
                             {% for vid in ouput %}
                             <tr>
                                 <td class="text-center">
-                                    <button id = "jump{{ loop.index }}" type="button" class="btn btn-primary" value="{{vid[1]}}">{{vid[1]}}</button>
+                                    <button id = "jump{{ loop.index }}" type="button" class="btn btn-danger" value="{{vid[1]}}">{{vid[1]}}</button>
                                 </td>
                                 <td class="text-center" style="text-transform: uppercase;">{{vid[0]}}</td>
                             </tr>
@@ -45,45 +45,46 @@
                     </table>
                 </div>
             </div>
+                <center> <a href="{{url_for('videoDB')}}" class="btn btn-primary">Back to Database</a> </center>
         </div>
+    </div>
 
-        <a class="d-flex justify-content-center d-none" href="{{url_for('videoDB')}}">Back to Database</a>
 
-        <!-- JavaScript Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-            crossorigin="anonymous"></script>
-        <script>
-            var myvideo = document.getElementById('myvideo'),
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script>
+        var myvideo = document.getElementById('myvideo'),
 
-            // jumplink = document.getElementById('jump');
-            jumplink = document.getElementsByClassName("btn btn-primary"); //Get a collection of html elements by class name
+        // jumplink = document.getElementById('jump');
+        jumplink = document.getElementsByClassName("btn btn-danger"); //Get a collection of html elements by class name
 
-            for (var i = 0; i< jumplink.length; i ++ ){
+        for (var i = 0; i< jumplink.length; i ++ ){
 
-                jumplink[i].addEventListener("click", function (event) {
-                event.preventDefault();
-                myvideo.play();
-                myvideo.pause();
-                myvideo.currentTime = hmsToSecondsOnly(this.value);
-                myvideo.play();            
-                }, false);
-            }
-    
+            jumplink[i].addEventListener("click", function (event) {
+            event.preventDefault();
+            myvideo.play();
+            myvideo.pause();
+            myvideo.currentTime = hmsToSecondsOnly(this.value);
+            myvideo.play();
+            }, false);
+        }
 
-            function hmsToSecondsOnly(str) {
-                var p = str.split(':'),
-                    s = 0, m = 1;
 
-                while (p.length > 0) {
-                    s += m * parseInt(p.pop(), 10);
-                    m *= 60;
-                }
+        function hmsToSecondsOnly(str) {
+            var p = str.split(':'),
+                s = 0, m = 1;
 
-                return s;
+            while (p.length > 0) {
+                s += m * parseInt(p.pop(), 10);
+                m *= 60;
             }
 
-        </script>
+            return s;
+        }
+
+    </script>
 
 </body>
 
