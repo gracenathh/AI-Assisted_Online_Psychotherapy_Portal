@@ -3,6 +3,7 @@ from flask import render_template, url_for, redirect, flash, abort, request
 from flask_login import UserMixin, login_user, current_user
 from flask_login.utils import logout_user
 from werkzeug.utils import secure_filename
+from datetime import datetime
 import os
 import re
 import secrets
@@ -170,8 +171,14 @@ def video_upload():
         if not os.path.exists(videoDirectory):
             os.makedirs(videoDirectory)
 
+        # datetime object containing current date and time
+        now = datetime.now()
+
+        # dd/mm/YY H:M:S
+        dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+
         video_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        newVideo = VideoFiles(videoName=filename, videoData=video_file.read())
+        newVideo = VideoFiles(videoName=filename, videoData=video_file.read(),videoDate=dt_string)
         db.session.add(newVideo)
         db.session.commit()
 

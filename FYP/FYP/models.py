@@ -64,6 +64,8 @@ class VideoFiles(db.Model):
     videoData = db.Column(db.LargeBinary, nullable = False)
     uploaderid = db.Column(db.Integer, db.ForeignKey('user.id'))
     videoEmotion = db.Column(db.PickleType, nullable = True)
+    videoDate = db.Column(db.String(100), nullable = False)
+
 
     def __repr__(self):
         return f"VideoFiles('{self.videoName}')"

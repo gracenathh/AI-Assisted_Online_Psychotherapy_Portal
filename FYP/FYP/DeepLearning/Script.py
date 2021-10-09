@@ -137,6 +137,14 @@ def main(directory):
   #create progress bar
   window = Tk()
 
+  # Title of the bar:
+  window.title("Processing Video")
+
+  # Bring the bar to the front most window:
+  window.lift()
+  window.attributes('-topmost', True)
+  window.after_idle(window.attributes, '-topmost', False)
+
   percent = StringVar()
   text = StringVar()
   bar = Progressbar(window, orient = HORIZONTAL, length= 300)
@@ -144,10 +152,8 @@ def main(directory):
   percentLabel = Label(window, textvariable= percent).pack()
   taskLabel = Label(window, textvariable= text).pack()
 
-
   #Initial value of progress bar
   updateProgressWindow(0,"0","Started processing")
-
 
   # process file
   # 1 - Slice video
@@ -175,6 +181,9 @@ def main(directory):
 
   updateProgressWindow(100,"100","Finished prediction")
   window.after(2000, window.destroy)   #Automatically destroy the window after 2 seconds if not exited
+  window.lift()
+  window.attributes('-topmost', True)
+  window.after_idle(window.attributes, '-topmost', False)
   window.mainloop()
 
 
