@@ -47,7 +47,7 @@ class PatientForm(FlaskForm):
     relationship = SelectField(u'Relationship', choices=[('Parent'), ('Sibling'), ('Grandparent'), ('Guardian')])
     email = StringField('Email', validators=[Email()])
 
-    submit = SubmitField('Add Record')
+    submit = SubmitField('Submit')
 
 class ChangePasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
@@ -69,7 +69,7 @@ class SearchPatientForm(FlaskForm):
     
 class RequestResetForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
-    submit = SubmitField('Request Password Reset')
+    submit = SubmitField('CONFIRM')
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()

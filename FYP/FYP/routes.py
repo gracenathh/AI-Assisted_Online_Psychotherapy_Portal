@@ -3,7 +3,6 @@ from flask import render_template, url_for, redirect, flash, abort, request
 from flask_login import UserMixin, login_user, current_user
 from flask_login.utils import logout_user
 from werkzeug.utils import secure_filename
-from datetime import datetime
 import os
 import re
 import secrets
@@ -11,7 +10,6 @@ from PIL import Image
 from FYP import app, db, mail
 from FYP.models import User, Patient, Variables, VideoFiles
 from flask_mail import Message
-
 from FYP.DeepLearning.Script import test, main
 
 @app.route('/', methods=['GET', 'POST'])
@@ -19,7 +17,6 @@ def loginpage():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        #if user and bcrypt.check_password_hash(user.password, form.password.data):
         if user and user.password == form.password.data:
             login_user(user)
             return redirect(url_for('dashboard'))
@@ -36,8 +33,7 @@ def logout():
 def registerpage():
     form = RegisterForm()
     if form.validate_on_submit():
-        #hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        #user = User(email=form.email.data, password=hashed_password)
+       
         user = User(email=form.email.data, password=form.password.data, firstname=form.firstname.data, lastname=form.lastname.data, organization=form.organization.data, title=form.title.data)
         db.session.add(user)
         db.session.commit()
@@ -116,17 +112,13 @@ def userrecords():
     patients = Patient.query.filter_by(therapyid = current_user.id).all()
     return render_template('userrecords.html', title='Records', patients=patients, form=search)
 
-@app.route('/patient/new', methods=['GET', 'POST'])
+@app.route('/addrecord', methods=['GET', 'POST'])
 def addrecordpage():
     form = PatientForm()
     if form.validate_on_submit():
         patient = Patient( firstname=form.firstname.data, lastname=form.lastname.data, gender=form.gender.data, country=form.country.data,  age=form.age.data, guardiantitle=form.guardiantitle.data,
             guardianfirstname=form.guardianfirstname.data, guardianlastname=form.guardianlastname.data, email=form.email.data, relationship=form.relationship.data)
-        
-        #if form.picture.data:
-            #picture_file = storePicture(form.picture.data)
-            #patient.picture = picture_file
-        
+ 
         db.session.add(patient)
         db.session.commit()
         flash('Patient Record Added')
@@ -138,9 +130,9 @@ def addrecordpage():
 @app.route('/patient/<int:patient_id>', methods=["GET"])
 def recordpage(patient_id):
     patient = Patient.query.get_or_404(patient_id)
-    #picture = url_for('static', filename='images/' + patient.id)
+
     return render_template('patient.html', title=patient.id, patient=patient)
-    #,picture=picture)
+
 
 @app.route('/recordsresults')
 def recordresults(search):
@@ -171,14 +163,8 @@ def video_upload():
         if not os.path.exists(videoDirectory):
             os.makedirs(videoDirectory)
 
-        # datetime object containing current date and time
-        now = datetime.now()
-
-        # dd/mm/YY H:M:S
-        dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-
         video_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        newVideo = VideoFiles(videoName=filename, videoData=video_file.read(),videoDate=dt_string)
+        newVideo = VideoFiles(videoName=filename, videoData=video_file.read())
         db.session.add(newVideo)
         db.session.commit()
 
@@ -216,10 +202,6 @@ def videoDB():
     return render_template("videoDB.html", user = Variables.username, videos = video_data)
     # videos = video_array,
 
-@app.route("/unprocessdVideo/<int:videoID>")
-def unprocessedVideo(videoID):
-    vid = VideoFiles.query.get_or_404(videoID)
-    return render_template("unprocessed-video-details-page-13.html",video = vid)
 
 @app.route("/processedVideo/<int:videoID>")
 def processedVideo(videoID):
@@ -248,12 +230,10 @@ def processedVideo(videoID):
     return render_template("outputDL.html", video = vid, ouput = queriedResults)
 
 
-
-
-@app.route('/patient/<id>/update', methods=["GET", "POST"])
-def updaterecordpage(id):
-    patient = Patient.query.get_or_404(id)
-    if patient.therapist != current_user:
+@app.route('/patient/<int:patient_id>/update', methods=["GET", "POST"])
+def updaterecordpage(patient_id):
+    patient = Patient.query.get_or_404(patient_id)
+    if patient.user != current_user:
         abort(403)
     form = PatientForm()
     if form.validate_on_submit():
@@ -269,39 +249,20 @@ def updaterecordpage(id):
         patient.email=form.email.data
         
         patient.relationship=form.relationship.data
-        """
-        if form.picture.data:
-            picture_file = storePicture(form.picture.data)
-            patient.picture = picture_file
+   
         db.session.commit()
-        """
-        
         flash('Record Updated')
         return redirect(url_for('recordpage', id=patient.id))
     return render_template('updaterecordpage.html', title='Update Record', form=form)
 
-"""
-@app.route('/patient/id/delete', methods=['POST'])
-def deleterecord(id):
-    patient = Patient.query.get_or_404(id)
-    if patient.therapist != current_user:
+
+@app.route('/patient/<int:patient_id>/delete', methods=['POST'])
+def deleterecord(patient_id):
+    patient = Patient.query.get_or_404(patient_id)
+    if patient.user != current_user:
         abort(403)
     db.session.delete(patient)
     db.session.commit()
     flash('Record Deleted')
     return redirect(url_for('dashboard'))
-"""
-"""
-def storePicture(form_picture):
-    randomhex = secrets.token_hex(8)
-    _, f_ext = os.path.splittext(form_picture.filename)
-    picture_fn = randomhex + f_ext
-    picture_path = os.path.join(app.root_path, 'static/images', picture_fn)
 
-    outputsize = (125,125)
-    i = Image.open(form_picture)
-    i.thumbnail(outputsize)
-    i.save(picture_path)
-
-    return picture_fn
-    """
