@@ -166,3 +166,17 @@
 .border-0-5px-black-4 {
   border: 0.5px solid var(--black-4);
 }
+
+a:link {
+  color: rgb(32, 30, 30);
+
+}
+
+a:visited {
+  color: rgb(32, 30, 30);
+}
+
+a:hover {
+  text-decoration: #E7D8C9;
+  text-decoration-line: underline;
+}
