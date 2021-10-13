@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=1920, maximum-scale=1.0" />
+        <link rel="stylesheet" type ="text/css" href="{{ url_for('static', filename='resettoken.css') }}">
+        <link rel="stylesheet" type="text/css" href="static/css/styleguide.css" />
+        <link rel="stylesheet" type="text/css" href="static/css/globals.css" />
+    </head>
+
+    <body style = "margin: 0; background: #ffffff; background-image: url('static/img/bg1.png');">
+        <header><p class="header">PSYCHOTHERAPY PORTAL</p></header>
+        <h1 class="title">PSYCHOTHERAPY PORTAL</h1>
+        <div class ="formbox">
+            <form method ="POST" action="">
+                {{form.hidden_tag()}}
+                <fieldset>
+                    <small class="bodytext">Please reset your password.</small>
+                    <div>
+                        {{form.password.label (class ="passwordlabel")}}
+                        {{form.password (class = "passwordinput")}}
+                    </div>
+                    <div>
+                        {{form.confirmpassword.label (class ="confirmpasswordlabel")}}
+                        {{form.confirmpassword (class = "confirmpasswordinput")}}
+                    </div>
+                </fieldset>
+                <div>
+                    {{form.submit (class="button")}}
+                </div>
+            </form>
+            {% for mesg in get_flashed_messages() %}
+            <h1 class ="error">{{ mesg }}</h1>
+            {% endfor %}
+
+        </div>
+        <div class="footer"></div>
+    </body>
+</html>

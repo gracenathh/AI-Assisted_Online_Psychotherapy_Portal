@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html>
-    <header>
-        <a href="{{url_for('dashboard')}}">Dashboard</a>
-        <a href="{{url_for('userrecords')}}">Records</a>
-        <a href="{{url_for('addrecordpage')}}">Add Record</a>
-        <a href="{{url_for('account')}}">Account</a>
-        <a href="{{url_for('video_upload')}}">Video Upload</a>
-    </header>
-    <h2>
-       Welcome Dr. {{current_user.lastname}}
-    </h2>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=1920, maximum-scale=1.0" />
+        <link rel="stylesheet" type ="text/css" href="{{ url_for('static', filename='dashboard.css') }}">
+        <link rel="stylesheet" type="text/css" href="static/css/styleguide.css" />
+        <link rel="stylesheet" type="text/css" href="static/css/globals.css" />
+    </head>
+    <body style="margin: 0; background: #FFF8F6; background-image: url('static/img/bg1.png');"></body>
+        <header>
+            <p class="header">PSYCHOTHERAPY PORTAL</p>
+            <a href="{{url_for('dashboard')}}" class="dashlink">DASHBOARD</a>
+            <a href="{{url_for('userrecords')}}" class="reclink">PATIENT RECORDS</a>
+            <a href="{{url_for('videoDB')}}" class="vdblink">VIDEO DATABASE</a>
+            <a href="{{url_for('account')}}" class="acctlink">Your Account</a>
+        </header>
+        <h2 class="welcome">
+            Welcome {{current_user.title}} {{current_user.lastname}}
+        </h2>
+        <a href="{{url_for('video_upload')}}" class="vidup">Video Upload</a>
+        <a href="{{url_for('addrecordpage')}}" class="addrec">Add Patient Record</a>
+
+        <div class="footer"></div>
+    </body>
 </html>

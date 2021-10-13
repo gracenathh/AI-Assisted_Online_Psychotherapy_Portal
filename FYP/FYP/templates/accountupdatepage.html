@@ -1,31 +1,59 @@
 <!DOCTYPE html>
 <html>
-    <div>
-        <form method ="POST" action="">
-            {{form.hidden_tag()}}
-            <fieldset>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=1920, maximum-scale=1.0" />
+        <link rel="stylesheet" type ="text/css" href="{{ url_for('static', filename='accountupdatepage.css') }}">
+        <link rel="stylesheet" type="text/css" href="static/css/styleguide.css" />
+        <link rel="stylesheet" type="text/css" href="static/css/globals.css" />
+    </head>
+    <body style="margin: 0; background: #FFF8F6; background-image: url('static/img/bg1.png');">
+        <header>
+            <p class="header">PSYCHOTHERAPY PORTAL</p>
+            <a href="{{url_for('dashboard')}}" class="dashlink">DASHBOARD</a>
+            <a href="{{url_for('userrecords')}}" class="reclink">PATIENT RECORDS</a>
+            <a href="{{url_for('videoDB')}}" class="vdblink">VIDEO DATABASE</a>
+            <a href="{{url_for('account')}}" class="acctlink">Your Account</a>
+        </header>
+        <div class ="titlebox">
+            <h1 class="subtitle">Update Account Details</h1>
+            <a href="{{url_for('account')}}" class="cancel">Cancel</a>
+        </div>
+        <div class = "formbox">
+            <form method ="POST" action="">
+                {{form.hidden_tag()}}
+                <fieldset>
+                    <div>
+                        {{form.email.label (class="email")}}
+                        {{form.email (class="emailinput")}}
+                    </div>
+                    <div>
+                        {{form.title.label (class="title")}}
+                        {{form.title (class="titleinput")}}
+                    </div>
+                    <small class="fullnamelabel">Full Name</small>
+                    <div>
+                        {{form.firstname.label (class="firstname")}}
+                        {{form.firstname (class="firstnameinput")}}
+                    </div>
+                    <div>
+                        {{form.lastname.label (class="lastname")}} 
+                        {{form.lastname (class="lastnameinput")}}
+                    </div>
+                    <div>
+                        {{ form.organization.label(class="organization") }}
+                        {{form.organization (class="organizationinput")}}
+                    </div>
+                </fieldset>
                 <div>
-                    {{form.email.label}}
-                    {{form.email}}
+                    {{form.submit (class="button")}}
                 </div>
-                <div>
-                    {{form.title.label}}
-                    {{form.title}}
-                </div>
-                <div>
-                    {{form.firstname.label}}
-                    {{form.firstname}}
-                </div>
-                <div>
-                    {{form.lastname.label}}
-                    {{form.lastname}}
-                </div>
-                <div>
-                    {{form.organization.label}}
-                    {{form.organization}}
-                </div>
-            </fieldset>
-            <div>
-                {{form.submit}}
-            </div>
+            </form>
+        </div>
+        {% for mesg in get_flashed_messages() %}
+        <h1 class ="error">{{ mesg }}</h1>
+        {% endfor %}
+
+        <div class="footer"></div>
+    </body>
 </html>
