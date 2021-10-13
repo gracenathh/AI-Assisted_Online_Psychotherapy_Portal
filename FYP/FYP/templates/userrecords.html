@@ -1,41 +1,56 @@
 <!DOCTYPE html>
 <html>
-    <a href="{{url_for('addrecordpage')}}">Add Record</a>
-    
-    <div>
-        <form method ="POST" action="">
-            {{form.hidden_tag()}}
-            <fieldset>
-                <div>
-                    {{form.search.label}}
-                    {{form.search}}
-                </div>
-                
-            </fieldset>
-            <div>
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=1920, maximum-scale=1.0" />
+        
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styleguide.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/globals.css')}}" />
+    </head>
+    <body style="margin: 0; background: #FFF8F6; background-image: url_for('static', filename='img/bg1.png');">
+        
+        <header>
+            <p class="header">PSYCHOTHERAPY PORTAL</p>
+            <a href="{{url_for('dashboard')}}" class="dashlink">DASHBOARD</a>
+            <a href="{{url_for('userrecords')}}" class="reclink">PATIENT RECORDS</a>
+            <a href="{{url_for('videoDB')}}" class="vdblink">VIDEO DATABASE</a>
+            <a href="{{url_for('account')}}" class="acctlink">Your Account</a>
+        </header>
+        <div>
+            <form method ="POST" action="">
+                {{form.hidden_tag()}}
+                <fieldset>
+                    <div>
+                        {{form.search.label (class="searchlabel")}}
+                        {{form.search (class="searchbar")}}
+                    </div>
+                    
+                </fieldset>
                 {{form.submit}}
-            </div>
-        </form>
-       
-    </div>
-    <div>
-        <table>
-            <tr>
-                <th>Patient ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Country</th>
-            </tr>
-            <tr>
-                {% for patient in patients %}
+            </form>
+            <a href="{{url_for('addrecordpage')}}" class="addrec">Add Record</a>
+        </div>
+        <div class="ptab">
+            <table>
                 <tr>
-                    <td><a href ="/patient/{{patient.id}}"></a>{{patient.id}}</td>
-                    <td>{{patient.firstname}}</td>
-                    <td>{{patient.lastname}}</td>
-                    <td>{{patient.country}}</td>
+                    <th>Patient ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Country</th>
                 </tr>
-                {% endfor %}
-            </tr>
-        </table>
-    </div>
+                <tr>
+                    {% for patient in patients %}
+                    <tr>
+                        <td><a href ="/patient/{{patient.id}}">{{patient.id}}</a></td>
+                        <td>{{patient.firstname}}</td>
+                        <td>{{patient.lastname}}</td>
+                        <td>{{patient.country}}</td>
+                    </tr>
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>
+        <div class="footer"></div>
+    </body>
 </html>
