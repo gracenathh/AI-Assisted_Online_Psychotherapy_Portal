@@ -1,4 +1,4 @@
-from FYP.forms import LoginForm, PatientForm, RegisterForm, UpdateDetailsForm, ChangePasswordForm, SearchPatientForm, RequestResetForm, ResetPasswordForm
+from ..FYP.forms import LoginForm, PatientForm, RegisterForm, UpdateDetailsForm, ChangePasswordForm, SearchPatientForm, RequestResetForm, ResetPasswordForm
 from flask import render_template, url_for, redirect, flash, abort, request
 from flask_login import UserMixin, login_user, current_user
 from flask_login.utils import logout_user
@@ -10,7 +10,7 @@ from PIL import Image
 from FYP import app, db, mail
 from FYP.models import User, Patient, Variables, VideoFiles
 from flask_mail import Message
-from FYP.DeepLearning.Script import test, main
+from ..FYP.DeepLearning.Script import test, main
 
 @app.route('/', methods=['GET', 'POST'])
 def loginpage():
