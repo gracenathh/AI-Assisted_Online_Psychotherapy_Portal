@@ -1,0 +1,40 @@
+.patient {
+    
+    background-color: var(--white);
+    cursor: pointer;
+    
+    height: 1080px;
+    overflow: hidden;
+    width: 1870px;
+}
+
+header {
+    position: fixed;
+    width: 1870px;
+    height: 52px;
+    left: 0px;
+    top: 0px;
+
+    background: #ffffff;
+}
+
+header .header {
+    position: fixed;
+    width: 422.33px;
+    height: 34.99px;
+    left: 51.03px;
+    top: 8.75px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17.4958px;
+    line-height: 43px;
+    /* or 244% */
+
+    
+    align-items: center;
+    letter-spacing: 0.01em;
+
+    color: rgba(0, 0, 0, 0.6);
+}
