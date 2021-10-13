@@ -1,12 +1,4 @@
-.loginpage {
-    
-    background-color: var(--white);
-    cursor: pointer;
-    
-    height: 1080px;
-    overflow: hidden;
-    width: 1870px;
-}
+
 
 header {
     position: fixed;
@@ -112,8 +104,6 @@ header .header {
 
     border: 1px solid #AEAEAE;
     box-sizing: border-box;
-
-    /* Inside Auto Layout */
 
     
     margin: 0px 0px;

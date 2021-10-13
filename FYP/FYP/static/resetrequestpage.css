@@ -1,17 +1,7 @@
-.loginpage {
-    
-    background-color: var(--white);
-    cursor: pointer;
-    
-    height: 1080px;
-    overflow: hidden;
-    width: 1870px;
-}
-
 header {
     position: fixed;
-    width: 1870px;
-    height: 52px;
+    width: 1920px;
+    height: 40px;
     left: 0px;
     top: 0px;
 
@@ -23,7 +13,7 @@ header .header {
     width: 422.33px;
     height: 34.99px;
     left: 51.03px;
-    top: 8.75px;
+    top: 6.75px;
 
     font-family: Josefin Sans;
     font-style: normal;
@@ -39,12 +29,13 @@ header .header {
     color: rgba(0, 0, 0, 0.6);
 }
 
+
 .title {
     position: fixed;
     width: 685px;
     height: 90px;
     left: 617px;
-    top: 140px;
+    top: 90px;
 
     font-family: Josefin Sans;
     font-style: normal;
@@ -61,119 +52,95 @@ header .header {
 }
 
 .formbox {
-    position: fixed;
+    position: absolute;
     width: 670px;
-    height: 481px;
-    left: 637px;
-    top: 405px;
+    height: 440px;
+    left: 655px;
+    top: 274px;
 
     background: #FFF8F7;
     border-radius: 20px;
 }
 
-.emailinput {
-    padding: 0 12px;
+.bodytext {
     position: fixed;
-    
-    
+    width: 429px;
+    height: 86px;
+    left: 780px;
+    top: 305px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 43px;
+    /* or 178% */
+
+    text-align: justify;
+    letter-spacing: 0.01em;
+
+    /* Grey Black */
+
+    color: rgba(0, 0, 0, 0.73);
+
+}
+
+.email {
+    padding: 0px;
+
+    position: fixed;
+    width: 37px;
+    height: 20px;
+    left: 780px;
+    top: 417px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+
+   
+}
+
+.emailinput {
+
+
+/* Auto Layout */
+
+    padding: 0px 16px;
+
+    position: fixed;
     width: 408px;
     height: 56px;
-    left: 756px;
-    top: 482px;
+    left: 780px;
+    top: 432px;
+
+    /* Neutral / White */
 
     background: #FFFFFF;
-   
+    /* Neutral / Neutral 5 */
+
     border: 1px solid #AEAEAE;
     box-sizing: border-box;
-}
-
-.emaillabel {
-    
-    font-family: Josefin Sans;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
-   
-
-   
-    align-items: center;
-    padding: 0px;
-
-    position: fixed;
-    width: 37px;
-    height: 20px;
-    left: 756px;
-    top: 465px;
 
 }
-.passwordlabel {
-    font-family: Josefin Sans;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
-    
-    align-items: center;
-
-
-    flex-direction: column;
-
-    padding: 0px;
-
-    position: fixed;
-    width: 37px;
-    height: 20px;
-    left: 756px;
-    top: 600px;
-}
-
-.passwordinput {
-    padding: 0px;
-
-    position: fixed;
-    width: 408px;
-    height: 56px;
-    left: 756px;
-    top: 617px;
-}
-
-.resettext {
-    position: fixed;
-    left: 756px;
-    top: 670px;
-   
-
-    /* Paragraph Small / Regular */
-
-    font-family: Josefin Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 24px;
-
-    /* Text / Gray */
-
-    color: #414141;
-
-}
-
 
 .button {
+    display: block;
     
-    
-    justify-content: center;
-    align-items: center;
     padding: 1px 16px;
 
     position: fixed;
     width: 165px;
     height: 66px;
     left: 889px;
-    top: 734px;
+    top: 560px;
+
+    /* Sand */
 
     background: linear-gradient(0deg, #E6BEAE, #E6BEAE), linear-gradient(0deg, #698996, #698996), #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(59, 59, 59, 0.42);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.42);
     border-radius: 20px;
 
     font-family: Josefin Sans;
@@ -186,25 +153,27 @@ header .header {
     text-align: center;
 
     color: #FFFFFF;
-
 }
 
-.register {
+.login {
     position: fixed;
-    width: 129px;
+    width: 453px;
     height: 40px;
-    left: 907px;
-    top: 821px;
+    left: 780px;
+    top: 635px;
 
     font-family: Josefin Sans;
     font-style: normal;
     font-weight: 300;
-    font-size: 28px;
+    font-size: 24px;
     line-height: 32px;
-    /* or 114% */
+    /* or 133% */
+
+    display: flex;
     align-items: center;
     text-align: center;
     text-decoration-line: underline;
+
 }
 
 .footer {

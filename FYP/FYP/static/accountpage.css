@@ -1,0 +1,438 @@
+header {
+    position: fixed;
+    width: 1920px;
+    height: 40px;
+    left: 0px;
+    top: 0px;
+
+    background: #ffffff;
+}
+
+header .header {
+    position: fixed;
+    width: 422.33px;
+    height: 34.99px;
+    left: 51.03px;
+    top: 6.75px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17.4958px;
+    line-height: 43px;
+    /* or 244% */
+
+    
+    align-items: center;
+    letter-spacing: 0.01em;
+
+    color: rgba(0, 0, 0, 0.6);
+}
+
+header .dashlink {
+    position: fixed;
+    width: 422.33px;
+    height: 34.99px;
+    left: 272px;
+    top: 6.75px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17.4958px;
+    line-height: 43px;
+    /* or 244% */
+
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+
+    color: rgba(0, 0, 0, 0.6);
+
+    text-decoration-line: none !important;
+
+
+}
+
+header .reclink {
+    position: fixed;
+    width: 422.33px;
+    height: 34.99px;
+    left: 499px;
+    top: 6.75px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17.4958px;
+    line-height: 43px;
+    /* or 244% */
+
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+
+    color: rgba(0, 0, 0, 0.6);
+
+    text-decoration-line: none !important
+}
+
+header .vdblink {
+    position: fixed;
+    width: 422.33px;
+    height: 34.99px;
+    left: 720px;
+    top: 6.75px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17.4958px;
+    line-height: 43px;
+    /* or 244% */
+
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+
+    color: rgba(0, 0, 0, 0.6);
+
+    text-decoration-line: none !important
+}
+
+header .acctlink {
+    position: fixed;
+    width: 422.33px;
+    height: 34.99px;
+    left: 1606px;
+    top: 6.75px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17.4958px;
+    line-height: 43px;
+    /* or 244% */
+
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+
+    color: rgba(0, 0, 0, 0.6);
+
+    text-decoration-line: none !important
+}
+
+.titlebox {
+    position: fixed;
+    width: 1717px;
+    height: 93px;
+    left: 100px;
+    top: 68px;
+
+    background: #FFFFFF;
+    opacity: 0.8;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 9.65238px;
+}
+
+.title {
+    position: fixed;
+    width: 1423.32px;
+    height: 51.52px;
+    left: 203.94px;
+    top: 96px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 69.9831px;
+    line-height: 43px;
+    /* or 61% */
+
+    letter-spacing: 0.01em;
+
+    /* Grey Black */
+
+    color: rgba(0, 0, 0, 0.73);
+
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1)
+}
+
+.logout {
+    position: fixed;
+    width: 596px;
+    height: 40px;
+    left: 1340px;
+    top: 95px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 32px;
+
+    text-align: center;
+    text-decoration-line: underline;
+}
+
+.infobox {
+    position: fixed;
+    width: 1716px;
+    height: 550px;
+    left: 101px;
+    top: 173px;
+
+    background: #FFFFFF;
+    opacity: 0.9;
+    border-radius: 9.65238px;
+}
+
+.subtitle {
+    position: fixed;
+    width: 296px;
+    height: 50px;
+    left: 130px;
+    top: 220px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 42px;
+    /* or 193% */
+
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.01em;
+    text-decoration: bold;
+
+    /* Grey Black */
+
+    color: rgba(0, 0, 0, 0.73);
+}
+
+.update {
+    left: 1280px;
+    top: 243px;
+
+    position: fixed;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 32px;
+
+    align-items: center;
+    text-align: center;
+    text-decoration-line: underline;
+}
+
+.changepassword {
+    left: 1280px;
+    top: 300px;
+
+    position: fixed;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 32px;
+
+    align-items: center;
+    text-align: center;
+    text-decoration-line: underline;
+}
+
+.titlelabel {
+    position: fixed;
+    width: 153px;
+    height: 46px;
+    left: 180px;
+    top: 304px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 43px;
+    /* or 214% */
+
+    color: #000000;
+}
+
+.usertitle {
+    position: fixed;
+    width: 153px;
+    height: 46px;
+    left: 507px;
+    top: 304px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 43px;
+
+    color: #000000;
+
+}
+
+.firstname {
+    position: fixed;
+    width: 153px;
+    height: 46px;
+    left: 180px;
+    top: 358px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 43px;
+   
+
+    color: #000000;
+}
+
+.userfname {
+    position: fixed;
+    width: 153px;
+    height: 46px;
+    left: 507px;
+    top: 358px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 43px;
+
+    color: #000000;
+}
+
+.lastname {
+    position: fixed;
+    width: 153px;
+    height: 46px;
+    left: 180px;
+    top: 411px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 43px;
+    /* or 214% */
+
+    color: #000000;
+}
+
+.userlname {
+    position: fixed;
+    width: 153px;
+    height: 46px;
+    left: 507px;
+    top: 411px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 43px;
+
+    color: #000000;
+}
+
+.email {
+    position: fixed;
+    width: 232px;
+    height: 46px;
+    left: 179px;
+    top: 466px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 43px;
+
+    color: #000000;
+}
+
+.useremail {
+    position: fixed;
+    width: 153px;
+    height: 46px;
+    left: 507px;
+    top: 466px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 43px;
+
+    color: #000000;
+}
+
+.organization {
+    position: fixed;
+    width: 232px;
+    height: 46px;
+    left: 179px;
+    top: 521px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 43px;
+
+    color: #000000;
+}
+
+.userorg {
+    position: fixed;
+    width: 153px;
+    height: 46px;
+    left: 507px;
+    top: 521px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 43px;
+
+    color: #000000;
+}
+
+
+
+.footer {
+    position: absolute;
+    width: 1920px;
+    height: 30px;
+    left: 0px;
+    top: 937px;
+
+    /* Light Sand */
+
+    background: #EEE4E1;
+}
+
+.error {
+    font-family: Josefin Sans;
+    color: #310e0e;
+    text-align: center;
+    text-decoration: bold;
+
+    font-size: 20px;
+}

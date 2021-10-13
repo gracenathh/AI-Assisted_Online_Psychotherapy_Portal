@@ -1,0 +1,224 @@
+header {
+    position: fixed;
+    width: 1920px;
+    height: 40px;
+    left: 0px;
+    top: 0px;
+
+    background: #ffffff;
+}
+
+header .header {
+    position: fixed;
+    width: 422.33px;
+    height: 34.99px;
+    left: 51.03px;
+    top: 6.75px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17.4958px;
+    line-height: 43px;
+    /* or 244% */
+
+    
+    align-items: center;
+    letter-spacing: 0.01em;
+
+    color: rgba(0, 0, 0, 0.6);
+}
+
+header .dashlink {
+    position: fixed;
+    width: 422.33px;
+    height: 34.99px;
+    left: 272px;
+    top: 6.75px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17.4958px;
+    line-height: 43px;
+    /* or 244% */
+
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+
+    color: rgba(0, 0, 0, 0.6);
+
+    text-decoration-line: none !important;
+
+
+}
+
+header .reclink {
+    position: fixed;
+    width: 422.33px;
+    height: 34.99px;
+    left: 499px;
+    top: 6.75px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17.4958px;
+    line-height: 43px;
+    /* or 244% */
+
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+
+    color: rgba(0, 0, 0, 0.6);
+
+    text-decoration-line: none !important
+}
+
+header .vdblink {
+    position: fixed;
+    width: 422.33px;
+    height: 34.99px;
+    left: 720px;
+    top: 6.75px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17.4958px;
+    line-height: 43px;
+    /* or 244% */
+
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+
+    color: rgba(0, 0, 0, 0.6);
+
+    text-decoration-line: none !important
+}
+
+header .acctlink {
+    position: fixed;
+    width: 422.33px;
+    height: 34.99px;
+    left: 1606px;
+    top: 6.75px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17.4958px;
+    line-height: 43px;
+    /* or 244% */
+
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+
+    color: rgba(0, 0, 0, 0.6);
+
+    text-decoration-line: none !important
+}
+
+.welcome {
+    position: fixed;
+    width: 1081.82px;
+    height: 51.52px;
+    left: 75px;
+    top: 249px;
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 69.9831px;
+    line-height: 43px;
+    /* or 61% */
+
+    letter-spacing: 0.01em;
+
+    /* Grey Black */
+
+    color: rgba(0, 0, 0, 0.73);
+
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.vidup {
+    position: fixed;
+    width: 201.2px;
+    height: 39.37px;
+    left: 78px;
+    top: 325px;
+
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17.4958px;
+    line-height:35px;
+    /* or 89% */
+
+    text-align: center;
+
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+
+    background: linear-gradient(0deg, #E6BEAE, #E6BEAE), linear-gradient(0deg, #698996, #698996), #FFFFFF;
+    box-shadow: 0px 1.94398px 1.94398px rgba(0, 0, 0, 0.25);
+    border-radius: 9.71988px;
+
+    display: block;
+    
+    padding: 1px 16px;
+}
+
+.addrec {
+    position: fixed;
+    width: 201.2px;
+    height: 39.37px;
+    left: 320px;
+    top: 325px;
+
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17.4958px;
+    line-height: 35px;
+    /* or 89% */
+
+    text-align: center;
+
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+
+    background: linear-gradient(0deg, #E6BEAE, #E6BEAE), linear-gradient(0deg, #698996, #698996), #FFFFFF;
+    box-shadow: 0px 1.94398px 1.94398px rgba(0, 0, 0, 0.25);
+    border-radius: 9.71988px;
+
+    display: block;
+    
+    padding: 1px 16px;
+}
+
+
+.footer {
+    position: absolute;
+    width: 1920px;
+    height: 30px;
+    left: 0px;
+    top: 939px;
+
+    /* Light Sand */
+
+    background: #EEE4E1;
+}
