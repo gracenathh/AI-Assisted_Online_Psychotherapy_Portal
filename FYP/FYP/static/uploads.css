@@ -1,7 +1,3 @@
-body {
-    background-image: url("img/bg1.png");
-}
-
 header {
     position: fixed;
     width: 1920px;
@@ -131,24 +127,24 @@ header .acctlink {
     text-decoration-line: none !important
 }
 
-.searchbar {
-    position:fixed;
-    width: 1276px;
-    height: 39px;
-    left: 150px;
-    top: 50px;
-
-    background: #FFFFFF;
-    border: 0.485994px solid rgba(0, 0, 0, 0.25);
-    border-radius: 9.71988px;
+.idbox {
+    align-items: center;
+    top: 100;
+    background-color: white;
 }
 
-.searchlabel {
+.idprompt {
+    align-items: center;
+    top: 100;
+    font-family: Josefin Sans;
+}
+
+.idlabel {
     position: fixed;
-    width: 59.78px;
-    height: 29.16px;
-    left: 50px;
-    top: 50px;
+    width: 192px;
+    height: 47.41px;
+    left: 500px;
+    top: 110px;
 
     font-family: Josefin Sans;
     font-style: normal;
@@ -157,45 +153,29 @@ header .acctlink {
     line-height: 43px;
     /* or 214% */
 
-    
+    display: flex;
     align-items: center;
 
     color: #000000;
 }
 
-.addrec {
+.id {
+        
+    padding: 0px 16px;
+
     position: fixed;
-    width: 596px;
-    height: 40px;
-    left: 1340px;
-    top: 50px;
+    width: 410px;
+    height: 56px;
+    left: 510px;
+    top: 110px;
 
-    font-family: Josefin Sans;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 24px;
-    line-height: 32px;
-    /* or 133% */
+    /* Neutral / White */
 
-    
-    align-items: center;
-    text-align: center;
-    text-decoration-line: underline;
-}
+    background: #FFFFFF;
+    /* Neutral / Neutral 5 */
 
-.ptab {
-    left: 50px;
-    top: 100px;
-    position:fixed;
-    font-family: Josefin Sans;
-    font-size: 24px;
-    
-}
-
-
-.idrow {
-    background-color: #ddc6be;
-    
+    border: 1px solid #AEAEAE;
+    box-sizing: border-box;
 }
 
 .footer {
@@ -208,13 +188,4 @@ header .acctlink {
     /* Light Sand */
 
     background: #EEE4E1;
-}
-
-.error {
-    font-family: Josefin Sans;
-    color: #310e0e;
-    text-align: center;
-    text-decoration: bold;
-
-    font-size: 20px;
 }
