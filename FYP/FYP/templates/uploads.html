@@ -1,37 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Uploading Media</title>
-    <!-- Bootstrap CSS -->
-    <!-- CSS only -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, maximum-scale=1.0" />
+    <link rel="stylesheet" type ="text/css" href="{{ url_for('static', filename='uploads.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styleguide.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/globals.css')}}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"></head>
 </head>
-<body>
-    <div>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Online Psychotherapy Portal</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link" aria-current="page" href="/dashboard">Home</a>
-                    <a class="nav-link" href="/videoDb">Videos Database</a>
-                    <a class="nav-link active" href="/upload">Upload</a>
-                </div>
-                </div>
-            </div>
-        </nav>
-    </div>
+<body style="margin: 0; background: #FFF8F6; background-image: url_for('static', filename='img/bg1.png');">
+    <header>
+        <p class="header">PSYCHOTHERAPY PORTAL</p>
+        <a href="{{url_for('dashboard')}}" class="dashlink">DASHBOARD</a>
+        <a href="{{url_for('userrecords')}}" class="reclink">PATIENT RECORDS</a>
+        <a href="{{url_for('videoDB')}}" class="vdblink">VIDEO DATABASE</a>
+        <a href="{{url_for('account')}}" class="acctlink">Your Account</a>
+    </header>
+    
     <div class="container mt-5">
         <div class="row">
             <div class="alert alert-success d-none" id="successAlert" role="alert">
                     <span id="successMsg"></span> Click <a href="/videoDb" class="alert-link">here to go to the Video Database</a>
             </div>
             <div class="alert alert-danger d-none" id="dangerAlert" role="alert">
-                Please try upload your video again!
+                Please try to upload your video again!
             </div>
             <div class="col d-flex justify-content-center">
                 <div class="card  w-50">
@@ -48,7 +40,12 @@
                                         <span class="visually-hidden">Loading...</span>
                                     </div>
                                 </div>
+                                
                                 <form id="uploadForm" class="form">
+                                    <div class="row mt-3">
+                                        <label for="exampleFormControlInput1">Patient ID</label>
+                                        <input type="number" name="patientid" class="form-control" id="inputID" placeholder="The ID of the patient in this video" required/>
+                                    </div>
                                     <div class="row mt-3">
                                         <div class="col">
                                             <input id="videoInput" type="file" name="videoFile" class="form-control" accept="video/*" required/>
@@ -56,7 +53,7 @@
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col  d-flex justify-content-center">
-                                            <button type="submit" class="btn btn-primary ">Upload your video file</button>
+                                            <button type="submit" class="button ">Upload</button>
                                         </div>
                                     </div>
                                 </form>
@@ -137,5 +134,6 @@
 
         form.addEventListener('submit', submitVideo)
     </script>
+    <div class="footer"></div>
 </body>
 </html>

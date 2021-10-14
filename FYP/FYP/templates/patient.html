@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=1920, maximum-scale=1.0" />
-       
+        <link rel="stylesheet" type ="text/css" href="{{ url_for('static', filename='patient.css') }}">
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styleguide.css')}}"  />
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/globals.css')}}" />
     </head>
@@ -16,36 +16,56 @@
             <a href="{{url_for('videoDB')}}" class="vdblink">VIDEO DATABASE</a>
             <a href="{{url_for('account')}}" class="acctlink">Your Account</a>
         </header>
-
-        <a href="{{ url_for('updaterecordpage', patient_id=patient.id)}}">Update Details</a>
-        <a href="{{ url_for('deleterecord', patient_id=patient.id)}}">Delete Record</a>
+        <div class ="titlebox">
+            <h1 class="title">Patient Information</h1>
+        <a href="{{ url_for('updaterecordpage', patient_id=patient.id)}}" class="update">Update Details</a>
+        <a href="{{ url_for('deleterecord', patient_id=patient.id)}}" class="delete">Delete Record</a>
+        </div>
     <div class="infobox">
-        <small class="fullnamelabel">Full Name</small>
+        <small class="fullnamelabel">Full Name:</small>
         <span class="pfname">{{patient.firstname}} </span>
         <span class="plname">{{patient.lastname}} </span>
 
-        <small class="agelabel">Age</small>
+        <small class="agelabel">Age:</small>
         <small class="page">{{patient.age}} </small>
 
-        <small class="genderlabel">Gender</small>
+        <small class="genderlabel">Gender:</small>
         <small class="pgender">{{patient.gender}} </small>
 
-        <small class="countrylabel">Country</small>
+        <small class="countrylabel">Country:</small>
         <span class="pcountry">{{patient.country}} </span>
 
 
-        <small class="titlelabel">Guardian's Title</small>
+        <small class="titlelabel">Guardian's Title:</small>
         <small class="pgtitle">{{patient.guardiantitle}} </small>
 
-        <small class="gnamelabel">Guardian's Name</small>
+        <small class="gnamelabel">Guardian's Name:</small>
         <span class="pgfname">{{patient.guardianfirstname}} </span>
-        <span class="pglname">{{patient.guardianfirstname}} </span>
+        <span class="pglname">{{patient.guardianlastname}} </span>
 
-        <small class="rellabel">Relationship</small>
+        <small class="rellabel">Relationship:</small>
         <small class="prel">{{patient.relationship}} </small>
 
-        <small class="emaillabel">Guardian's Email</small>
+        <small class="emaillabel">Guardian's Email:</small>
         <small class="pemail">{{patient.email}} </small>
+    
+    <div>
+
+    <div class="vtable">
+        <table style="width:280%">
+            <tr>
+                <th>Video ID</th>
+                <th>Video Name</th>
+            </tr>
+            <tr>
+                {% for video in videos%}
+                <tr>
+                    <td><a href ="/processedVideo/{{video.videoID}}">{{video.videoID}}</a></td>
+                    <td><a href ="/processedVideo/{{video.videoID}}">{{video.videoName}}</a></td>
+                </tr>
+                {%endfor%}
+            </tr>
+        </table>
     </div>
     
         <div class="footer"></div>

@@ -2,15 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Deep Learning Model Output</title>
-    <!-- Bootstrap CSS -->
-    <!-- CSS only -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, maximum-scale=1.0" />
+    <link rel="stylesheet" type ="text/css" href="{{ url_for('static', filename='outputDL.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styleguide.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/globals.css')}}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 
-<body>
+
+<body style="margin: 0; background: #FFF8F6; background-image: url_for('static', filename='img/bg1.png');">
+    <header>
+        <p class="header">PSYCHOTHERAPY PORTAL</p>
+        <a href="{{url_for('dashboard')}}" class="dashlink">DASHBOARD</a>
+        <a href="{{url_for('userrecords')}}" class="reclink">PATIENT RECORDS</a>
+        <a href="{{url_for('videoDB')}}" class="vdblink">VIDEO DATABASE</a>
+        <a href="{{url_for('account')}}" class="acctlink">Your Account</a>
+    </header>
     <center>
         <div class="container mt-5">
             <video id="myvideo" preload="none" width="697" height="386" controls>
@@ -26,7 +35,7 @@
                 <div class="col">
 
                     <table class="table table-striped table-hover; width:auto">
-                        <thead class="table-dark">
+                        <thead class="table-light">
                             <tr>
                                 <th class="text-center">Video Timestamp</th>
                                 <th class="text-center">Emotion Tagged</th>
@@ -45,7 +54,7 @@
                     </table>
                 </div>
             </div>
-                <center> <a href="{{url_for('videoDB')}}" class="btn btn-primary">Back to Database</a> </center>
+                <center> <a href="{{url_for('videoDB')}}" class="button">Back to Database</a> </center>
         </div>
     </div>
 
@@ -85,7 +94,7 @@
         }
 
     </script>
-
+    <div class="footer"></div>
 </body>
 
 </html>

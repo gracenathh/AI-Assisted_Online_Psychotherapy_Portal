@@ -1,75 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Videos Database</title>
-    <!-- Bootstrap CSS -->
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"></head>
-<body>
-    <div>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Online Psychotherapy Portal</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link" aria-current="page" href="/dashboard">Home</a>
-                    <a class="nav-link active" href="/videoDb">Videos Database</a>
-                    <a class="nav-link" href="/upload">Upload</a>
-                </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col">
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=1920, maximum-scale=1.0" />
+        <link rel="stylesheet" type ="text/css" href="{{ url_for('static', filename='videoDB.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styleguide.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/globals.css')}}" />
+    </head>
+    <body style="margin: 0; background: #FFF8F6; background-image: url_for('static', filename='img/bg1.png');">
+        <header>
+            <p class="header">PSYCHOTHERAPY PORTAL</p>
+            <a href="{{url_for('dashboard')}}" class="dashlink">DASHBOARD</a>
+            <a href="{{url_for('userrecords')}}" class="reclink">PATIENT RECORDS</a>
+            <a href="{{url_for('videoDB')}}" class="vdblink">VIDEO DATABASE</a>
+            <a href="{{url_for('account')}}" class="acctlink">Your Account</a>
+        </header>
+        <div class="ptab">
+                    <table style="width:auto">
+                        <thead>
+                            <tr>
+                                <th>Video</th>
+                                <th>ID</th>
+                                <th>File Name</th>
+                                <th>Date Uploaded</th>
+                                <th>Patient ID</th>
+                                <th class="prow">Processed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for vid in videos %}
+                            <tr>
+                                <td>
+                                    
+                                    <!--TODO: Need to fix the video playing -->
+                                    <video preload="none" width="250" height="200" controls>
+                                        <source src="/static/uploads/{{vid.videoName}}"></source>
+                                    </video>
+                                </td>
+                                <td>{{vid.videoID}}</td>
+                                <td>{{vid.videoName}}</td>
+                                <td>{{vid.videoDate}}</td>
+                                <td>{{vid.patientid}}</td>
 
-                <table class="table table-striped table-hover">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Video</th>
-                            <th>ID</th>
-                            <th>File Name</th>
-                            <th>Date Uploaded</th>
-                            <th>Patient Name</th>
-                            <th>Processed</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for vid in videos %}
-                         <tr>
-                            <td>
-                                
-                                <!--TODO: Need to fix the video playing -->
-                                <video preload="none" width="250" height="200" controls>
-                                    <source src="/static/uploads/{{vid.videoName}}"></source>
-                                </video>
-                            </td>
-                            <td>{{vid.videoID}}</td>
-                            <td>{{vid.videoName}}</td>
-                            <td>{{vid.videoDate}}</td>
-                            <td>PATIENT ID</td>
-
-                            <!-- Display different buttons based on whether the video is processed -->
-                            {%  if vid.videoEmotion == None %}
-                                <td><a href = "{{url_for('processedVideo', videoID = vid.videoID )}}"><button style="background-color: maroon;" class="btn btn-primary">Unprocessed</button></a></td>
-                            {% else %}
-                                <td><a href = "{{url_for('processedVideo', videoID = vid.videoID )}}"><button class="btn btn-success">Processed</button></a></td>
-                            {% endif %}
+                                <!-- Display different buttons based on whether the video is processed -->
+                                {%  if vid.videoEmotion == None %}
+                                    <td class="prow"><a href = "{{url_for('processedVideo', videoID = vid.videoID )}}"><button style="background-color: rgb(153, 108, 108);" class="button">Unprocessed</button></a></td>
+                                {% else %}
+                                    <td class="prow"><a href = "{{url_for('processedVideo', videoID = vid.videoID )}}"><button class="button">Processed</button></a></td>
+                                {% endif %}
+                            
+                            </tr>
+                            {%endfor%}
+                        </tbody>
                         
-                        </tr>
-                        {%endfor%}
-                    </tbody>
-                    
-                </table>
-            </div>
+                    </table>
+               
         </div>
-    </div>
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-</body>
-</html>
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <div class="footer"></div>
+    </body>
+    </html>

@@ -4,11 +4,11 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=1920, maximum-scale=1.0" />
-        
+        <link rel="stylesheet" type ="text/css" href="{{ url_for('static', filename='userrecords.css') }}">
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styleguide.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/globals.css')}}" />
     </head>
-    <body style="margin: 0; background: #FFF8F6; background-image: url_for('static', filename='img/bg1.png');">
+    <body style="margin: 0; background: #FFF8F6; background-image: url_for('./static', filename='img/bg1.png');;">
         
         <header>
             <p class="header">PSYCHOTHERAPY PORTAL</p>
@@ -27,14 +27,14 @@
                     </div>
                     
                 </fieldset>
-                {{form.submit}}
+                <input type="submit" value="Search">
             </form>
             <a href="{{url_for('addrecordpage')}}" class="addrec">Add Record</a>
         </div>
         <div class="ptab">
             <table>
                 <tr>
-                    <th>Patient ID</th>
+                    <th class="idrow">Patient ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Country</th>
@@ -42,7 +42,7 @@
                 <tr>
                     {% for patient in patients %}
                     <tr>
-                        <td><a href ="/patient/{{patient.id}}">{{patient.id}}</a></td>
+                        <td class="idrow"><a href ="/patient/{{patient.id}}">{{patient.id}}</a></td>
                         <td>{{patient.firstname}}</td>
                         <td>{{patient.lastname}}</td>
                         <td>{{patient.country}}</td>
@@ -51,6 +51,10 @@
                 </tr>
             </table>
         </div>
+        {% for mesg in get_flashed_messages() %}
+        <h1 class ="error">{{ mesg }}</h1>
+        {% endfor %}
+        
         <div class="footer"></div>
     </body>
 </html>
