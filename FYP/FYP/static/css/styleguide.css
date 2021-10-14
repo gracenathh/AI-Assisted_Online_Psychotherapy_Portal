@@ -151,22 +151,6 @@
   font-weight: 600;
 }
 
-.border-1px-silver-chalice {
-  border: 1px solid var(--silver-chalice);
-}
-
-.border-1px-white {
-  border: 1px solid var(--white);
-}
-
-.border-0-5px-white {
-  border: 0.5px solid var(--white);
-}
-
-.border-0-5px-black-4 {
-  border: 0.5px solid var(--black-4);
-}
-
 a:link {
   color: rgb(32, 30, 30);
 
@@ -179,4 +163,37 @@ a:visited {
 a:hover {
   text-decoration: #E7D8C9;
   text-decoration-line: underline;
+}
+
+table {
+  border-collapse: collapse;
+  width:200%;
+  opacity: 0.9;
+  text-align:center;
+  background-color: white; 
+
+}
+
+table tr {
+  border: 1px solid #62737a;
+  border-left: none;
+  border-right: none;
+  padding: 50px;
+}
+
+tr:first-child {
+  border-top: none;
+}
+
+tr:last-child {
+  border-bottom: none;
+}
+
+table th{
+  border:none;
+  padding: 50px;
+}
+
+table td {
+  padding: 50px;
 }
