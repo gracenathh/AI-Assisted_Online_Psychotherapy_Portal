@@ -11,9 +11,9 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 class User(db.Model, UserMixin):
+    __tablename__='user'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120))
-    #profilepicture = db.Column(db.String(20))
     title = db.Column(db.String(10))
     firstname = db.Column(db.String(120))
     lastname = db.Column(db.String(120))
@@ -36,9 +36,10 @@ class User(db.Model, UserMixin):
         return User.query.get(user_id)
 
     def __repr__(self):
-        return f"User('{self.email}')"
+        return f"User('{self.email}', '{self.title}', '{self.firstname}', '{self.lastname}', '{self.organization}')"
 
 class Patient(db.Model):
+    __tablename__="patient"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     firstname = db.Column(db.String(120))
     lastname = db.Column(db.String(120))
@@ -46,8 +47,8 @@ class Patient(db.Model):
     country = db.Column(db.String(60))
     age = db.Column(db.Integer)
     
-    therapyid = db.Column(db.Integer, db.ForeignKey('user.id'))
-    #picture = db.Column(db.string(30), default='defaultpic.jpg')
+    therapyid = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    patientvideos = db.relationship('VideoFiles', backref='patient', lazy='select')
 
     guardiantitle = db.Column(db.String(5))
     guardianfirstname = db.Column(db.String(120))
@@ -59,13 +60,14 @@ class Patient(db.Model):
         return f"Patient('{self.fullname}')"
 
 class VideoFiles(db.Model):
-    videoID = db.Column(db.Integer, primary_key = True)
+    __tablename__="VideoFiles"
+    videoID = db.Column(db.Integer, primary_key = True, autoincrement=True)
     videoName = db.Column(db.String(300), nullable = False)
     videoData = db.Column(db.LargeBinary, nullable = False)
-    uploaderid = db.Column(db.Integer, db.ForeignKey('user.id'))
+    uploaderid = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    patientid = db.Column(db.Integer, db.ForeignKey('patient.id'), nullable=False)
     videoEmotion = db.Column(db.PickleType, nullable = True)
-    videoDate = db.Column(db.String(100), nullable = False)
-
+    videoDate = db.Column(db.String(100), nullable = True)
 
     def __repr__(self):
         return f"VideoFiles('{self.videoName}')"

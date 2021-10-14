@@ -1,4 +1,6 @@
-from ..FYP.forms import LoginForm, PatientForm, RegisterForm, UpdateDetailsForm, ChangePasswordForm, SearchPatientForm, RequestResetForm, ResetPasswordForm
+from operator import or_
+from wtforms import form
+from FYP.forms import LoginForm, PatientForm, RegisterForm, UpdateDetailsForm, ChangePasswordForm, SearchPatientForm, RequestResetForm, ResetPasswordForm
 from flask import render_template, url_for, redirect, flash, abort, request
 from flask_login import UserMixin, login_user, current_user
 from flask_login.utils import logout_user
@@ -6,11 +8,12 @@ from werkzeug.utils import secure_filename
 import os
 import re
 import secrets
-from PIL import Image
+from sqlalchemy import or_
+from datetime import datetime
 from FYP import app, db, mail
 from FYP.models import User, Patient, Variables, VideoFiles
 from flask_mail import Message
-from ..FYP.DeepLearning.Script import test, main
+from FYP.DeepLearning.Script import test, main
 
 @app.route('/', methods=['GET', 'POST'])
 def loginpage():
@@ -103,7 +106,7 @@ def changepassword():
         flash('Password Changed!')
         return redirect(url_for('account'))
     return render_template('changepasswordpage.html', title='Change Password', form=form)
-
+"""
 @app.route('/user/records', methods=['GET', 'POST'])
 def userrecords():
     search = SearchPatientForm(request.form)
@@ -111,12 +114,25 @@ def userrecords():
         return recordresults(search)
     patients = Patient.query.filter_by(therapyid = current_user.id).all()
     return render_template('userrecords.html', title='Records', patients=patients, form=search)
+"""
+
+@app.route('/user/records', methods=['GET', 'POST'])
+def userrecords():
+    form= SearchPatientForm()
+    search = form.search.data
+    if request.method == 'POST':
+        search = form.search.data
+        search = search.strip()
+        patients = Patient.query.filter(or_(Patient.firstname.ilike(f'%{search}%')), (Patient.lastname.ilike(f'%{search}%')), (Patient.id.ilike(f'%{search}%')), (Patient.country.ilike(f'%{search}%'))).all()
+    
+    patients = Patient.query.filter_by(therapyid = current_user.id).all()
+    return render_template('userrecords.html', title='Records', patients=patients, form=form, search=search)
 
 @app.route('/addrecord', methods=['GET', 'POST'])
 def addrecordpage():
     form = PatientForm()
     if form.validate_on_submit():
-        patient = Patient( firstname=form.firstname.data, lastname=form.lastname.data, gender=form.gender.data, country=form.country.data,  age=form.age.data, guardiantitle=form.guardiantitle.data,
+        patient = Patient( therapyid = current_user.id, firstname=form.firstname.data, lastname=form.lastname.data, gender=form.gender.data, country=form.country.data,  age=form.age.data, guardiantitle=form.guardiantitle.data,
             guardianfirstname=form.guardianfirstname.data, guardianlastname=form.guardianlastname.data, email=form.email.data, relationship=form.relationship.data)
  
         db.session.add(patient)
@@ -130,11 +146,11 @@ def addrecordpage():
 @app.route('/patient/<int:patient_id>', methods=["GET"])
 def recordpage(patient_id):
     patient = Patient.query.get_or_404(patient_id)
+    videos = VideoFiles.query.filter_by(patientid = patient_id).all()
+    return render_template('patient.html', title=patient.id, patient=patient, videos=videos)
 
-    return render_template('patient.html', title=patient.id, patient=patient)
-
-
-@app.route('/recordsresults')
+"""
+@app.route('/recordsresults', methods=['GET', 'POST'])
 def recordresults(search):
     results = []
     searchquery = search.data['search']
@@ -142,20 +158,24 @@ def recordresults(search):
     if search.data['search'] == '':
         results = Patient.query.filter_by(therapyid = current_user.id).all()
 
+    
     if not results:
         flash('No Matching Record!')
         return redirect('/user/records')
-
+    
     else:
-        return render_template('recordresults.html', results=results)
+    return render_template('recordresults.html')
+"""
 
 @app.route("/upload", methods=['POST', 'GET'])
 def video_upload():
+    
     if request.method == 'POST':
         video_file = request.files['videoFile']
+        patientid = request.form.get('patientid')
         if not video_file:
             return "No video uploaded", 400
-        
+        print(patientid)
         filename = secure_filename(video_file.filename)
 
        #Create the directory where to store videos if it does not exist
@@ -163,8 +183,14 @@ def video_upload():
         if not os.path.exists(videoDirectory):
             os.makedirs(videoDirectory)
 
+        # datetime object containing current date and time
+        now = datetime.now()
+
+        # dd/mm/YY H:M:S
+        dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+
         video_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        newVideo = VideoFiles(videoName=filename, videoData=video_file.read())
+        newVideo = VideoFiles(videoName=filename, videoData=video_file.read(), videoDate=dt_string, uploaderid=current_user.id, patientid=patientid)
         db.session.add(newVideo)
         db.session.commit()
 
@@ -192,7 +218,9 @@ def play_video(filename):
 
 @app.route("/videoDb")
 def videoDB():
-    video_data = VideoFiles.query.all()
+
+    video_data = VideoFiles.query.filter_by(uploaderid = current_user.id).all()
+    
     # video_array = []
     # for i in video_data:
     #    video_array.append(i.videoName)
@@ -220,6 +248,8 @@ def processedVideo(videoID):
             db.session.commit()
 
         except Exception as e: #print error message
+            db.session.rollback()
+            raise
             print(e)
 
     #Query the results from the database
@@ -266,3 +296,14 @@ def deleterecord(patient_id):
     flash('Record Deleted')
     return redirect(url_for('dashboard'))
 
+"""
+@app.route('/processedVideo/<int:videoID>/delete', methods=['POST'])
+def deletevideo(videoID):
+    video = VideoFiles.query.get_or_404(videoID)
+    if video.user != current_user:
+        abort(403)
+    db.session.delete(video)
+    db.session.commit()
+    flash('Video Deleted')
+    return redirect(url_for('dashboard'))
+    """

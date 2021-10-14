@@ -39,7 +39,7 @@ class PatientForm(FlaskForm):
     lastname = StringField('Last Name', validators=[DataRequired()])
     age = IntegerField('Age in Years')
     country = StringField('Country')
-    #picture = FileField('Upload Picture', validators=[FileAllowed(['.jpg', 'png'])])
+
 
     guardiantitle = SelectField(u'Title', choices=[('Dr.'), ('Mr.'), ('Mrs.'), ('Ms.'), ('Mdm'), ('Miss')])
     guardianfirstname = StringField('First Name', validators=[DataRequired()])
@@ -66,7 +66,7 @@ class UpdateDetailsForm(FlaskForm):
 
 class SearchPatientForm(FlaskForm):
     search = StringField('Search')
-    
+
 class RequestResetForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('CONFIRM')
