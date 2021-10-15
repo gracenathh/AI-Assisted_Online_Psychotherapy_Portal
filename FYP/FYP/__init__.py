@@ -10,6 +10,7 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
+import smtplib
 
 VIDEO_UPLOADER = join(dirname(realpath(__file__)), 'static/uploads/')
 
@@ -23,11 +24,16 @@ db = SQLAlchemy(app)
 migrate=Migrate(app,db, render_as_batch=True)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
-app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS']= True
-app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
+app.config['MAIL_USE_TSL']= True
+app.config['EMAIL_HOST_USER'] = 'psychportal3162@gmail.com'
+app.config['EMAIL_HOST_PASSWORD'] = 'Portal3162'
 mail = Mail(app)
+
+s = smtplib.SMTP('smtp.gmail.com', 587)
+s.starttls()
+s.login('psychportal3162@gmail.com', 'Portal3162')
 
 """
 meta = MetaData(naming_convention={

@@ -24,7 +24,7 @@ class User(db.Model, UserMixin):
 
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(app.config['SECRET_KEY'], expires_sec)
-        return s.dumps ({'user_id: self.id'}).decode('utf-8')
+        return s.dumps ({'user_id': self.id}).decode('utf-8')
     
     @staticmethod
     def verify_reset_token(token):
@@ -57,7 +57,7 @@ class Patient(db.Model):
     email = db.Column(db.String(120))
 
     def __repr__(self):
-        return f"Patient('{self.fullname}')"
+        return f"Patient('{self.id}')"
 
 class VideoFiles(db.Model):
     __tablename__="VideoFiles"

@@ -1,14 +1,16 @@
 from operator import or_
+from sqlalchemy.sql.operators import ilike_op
 from wtforms import form
 from FYP.forms import LoginForm, PatientForm, RegisterForm, UpdateDetailsForm, ChangePasswordForm, SearchPatientForm, RequestResetForm, ResetPasswordForm
-from flask import render_template, url_for, redirect, flash, abort, request
+from flask import render_template, url_for, redirect, flash, abort, request, session
 from flask_login import UserMixin, login_user, current_user
 from flask_login.utils import logout_user
 from werkzeug.utils import secure_filename
 import os
 import re
 import secrets
-from sqlalchemy import or_
+from sqlalchemy import or_, func, create_engine, sql
+from sqlalchemy.sql.operators import ilike_op
 from datetime import datetime
 from FYP import app, db, mail
 from FYP.models import User, Patient, Variables, VideoFiles
@@ -46,9 +48,9 @@ def registerpage():
 
 def sendresetemail(user):
     token = user.get_reset_token()
-    msg = Message('Password Reset Request', sender='noreply@psychportal.com', reciepients=[user.email])
+    msg = Message('Password Reset Request', sender='psychportal3162@gmail.com', recipients=[user.email])
     msg.body = f'''If you have requested to reset your password, please click the following link:
-    {url_for('reset_token', token=token, _external=True)}
+    {url_for('resettoken', token=token, _external=True)}
     If you did not request this, please ignore this email. 
     Thank you.'''
     mail.send(msg)
@@ -64,7 +66,7 @@ def resetrequestpage():
     return render_template('resetrequestpage.html', title='Reset Request', form=form)
 
 @app.route('/resetpassword/<token>', methods=['GET', 'POST'])
-def resetoken(token):
+def resettoken(token):
     user = User.verify_reset_token(token)
     if user is None:
         flash('Invalid or expired token, please request to reset your password again')
@@ -106,15 +108,7 @@ def changepassword():
         flash('Password Changed!')
         return redirect(url_for('account'))
     return render_template('changepasswordpage.html', title='Change Password', form=form)
-"""
-@app.route('/user/records', methods=['GET', 'POST'])
-def userrecords():
-    search = SearchPatientForm(request.form)
-    if request.method == 'POST':
-        return recordresults(search)
-    patients = Patient.query.filter_by(therapyid = current_user.id).all()
-    return render_template('userrecords.html', title='Records', patients=patients, form=search)
-"""
+
 
 @app.route('/user/records', methods=['GET', 'POST'])
 def userrecords():
@@ -123,9 +117,16 @@ def userrecords():
     if request.method == 'POST':
         search = form.search.data
         search = search.strip()
-        patients = Patient.query.filter(or_(Patient.firstname.ilike(f'%{search}%')), (Patient.lastname.ilike(f'%{search}%')), (Patient.id.ilike(f'%{search}%')), (Patient.country.ilike(f'%{search}%'))).all()
+        print(search)
+        likestring = "%{}%".format(search)
+        sql = "SELECT id, firstname, lastname, country FROM patient WHERE firstname LIKE :x OR lastname LIKE :y OR id LIKE :z OR country LIKE :a"
+        stmt = db.text(sql).bindparams(x=likestring, y=likestring, z=likestring, a=likestring)
+        patients = db.session.execute(stmt).fetchall()
+       
+        print (patients)
+
     
-    patients = Patient.query.filter_by(therapyid = current_user.id).all()
+    else: patients = Patient.query.filter_by(therapyid = current_user.id).all()
     return render_template('userrecords.html', title='Records', patients=patients, form=form, search=search)
 
 @app.route('/addrecord', methods=['GET', 'POST'])
@@ -149,23 +150,7 @@ def recordpage(patient_id):
     videos = VideoFiles.query.filter_by(patientid = patient_id).all()
     return render_template('patient.html', title=patient.id, patient=patient, videos=videos)
 
-"""
-@app.route('/recordsresults', methods=['GET', 'POST'])
-def recordresults(search):
-    results = []
-    searchquery = search.data['search']
 
-    if search.data['search'] == '':
-        results = Patient.query.filter_by(therapyid = current_user.id).all()
-
-    
-    if not results:
-        flash('No Matching Record!')
-        return redirect('/user/records')
-    
-    else:
-    return render_template('recordresults.html')
-"""
 
 @app.route("/upload", methods=['POST', 'GET'])
 def video_upload():
