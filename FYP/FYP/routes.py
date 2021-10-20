@@ -1,5 +1,4 @@
 #routes file details each page and function to be used by the web application, and also links respective HTML pages
-from operator import or_
 from wtforms import form
 from FYP.forms import LoginForm, PatientForm, RegisterForm, UpdateDetailsForm, ChangePasswordForm, SearchPatientForm, RequestResetForm, ResetPasswordForm
 from flask import render_template, url_for, redirect, flash, abort, request, session
@@ -7,9 +6,8 @@ from flask_login import UserMixin, login_user, current_user
 from flask_login.utils import logout_user
 from werkzeug.utils import secure_filename
 import os
-import re
 import secrets
-from sqlalchemy import or_, func, create_engine, sql
+from sqlalchemy import sql
 from datetime import datetime
 from FYP import app, db, mail
 from FYP.models import User, Patient, Variables, VideoFiles
@@ -131,8 +129,8 @@ def userrecords():
         search = search.strip()
      
         likestring = "%{}%".format(search)
-        sql = "SELECT id, firstname, lastname, country FROM patient WHERE firstname LIKE :x OR lastname LIKE :y OR id LIKE :z OR country LIKE :a"
-        stmt = db.text(sql).bindparams(x=likestring, y=likestring, z=likestring, a=likestring)
+        sql = "SELECT id, firstname, lastname, country FROM patient WHERE therapyid = :b AND firstname LIKE :x OR lastname LIKE :y OR id LIKE :z OR country LIKE :a"
+        stmt = db.text(sql).bindparams(x=likestring, y=likestring, z=likestring, a=likestring, b=current_user.id)
         patients = db.session.execute(stmt).fetchall()
 
     else: patients = Patient.query.filter_by(therapyid = current_user.id).all()
