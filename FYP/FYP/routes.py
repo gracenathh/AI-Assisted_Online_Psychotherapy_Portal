@@ -1,5 +1,5 @@
+#routes file details each page and function to be used by the web application, and also links respective HTML pages
 from operator import or_
-from sqlalchemy.sql.operators import ilike_op
 from wtforms import form
 from FYP.forms import LoginForm, PatientForm, RegisterForm, UpdateDetailsForm, ChangePasswordForm, SearchPatientForm, RequestResetForm, ResetPasswordForm
 from flask import render_template, url_for, redirect, flash, abort, request, session
@@ -10,13 +10,14 @@ import os
 import re
 import secrets
 from sqlalchemy import or_, func, create_engine, sql
-from sqlalchemy.sql.operators import ilike_op
 from datetime import datetime
 from FYP import app, db, mail
 from FYP.models import User, Patient, Variables, VideoFiles
 from flask_mail import Message
 from FYP.DeepLearning.Script import test, main
 
+#Login page matches user input from form and results queried from database for user authentication
+#Error message displayed if no matching results, user will have to try again 
 @app.route('/', methods=['GET', 'POST'])
 def loginpage():
     form = LoginForm()
@@ -29,16 +30,17 @@ def loginpage():
             flash('Login Unsuccessful. Please Try Again.')
     return render_template('loginpage.html', title='login', form=form)
 
+#Logs user out and redirects them back to login page. User will need to login again to access web app.
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('loginpage'))
 
+#Allows registration of user by committing their field entries into the database from the form
 @app.route('/register', methods=['GET', 'POST'])
 def registerpage():
     form = RegisterForm()
     if form.validate_on_submit():
-       
         user = User(email=form.email.data, password=form.password.data, firstname=form.firstname.data, lastname=form.lastname.data, organization=form.organization.data, title=form.title.data)
         db.session.add(user)
         db.session.commit()
@@ -46,6 +48,7 @@ def registerpage():
         return redirect(url_for('loginpage'))
     return render_template('registerpage.html', title ='Register', form=form)
 
+#Function to sent an email to the registered email address of user who wants to reset their password, using the SMTP account
 def sendresetemail(user):
     token = user.get_reset_token()
     msg = Message('Password Reset Request', sender='psychportal3162@gmail.com', recipients=[user.email])
@@ -55,6 +58,7 @@ def sendresetemail(user):
     Thank you.'''
     mail.send(msg)
 
+#Allows user to reset their password and calls sendresetemail function. User must already be registered and will be checked by querying database.
 @app.route('/resetpassword', methods=['GET','POST'])
 def resetrequestpage():
     form = RequestResetForm()
@@ -65,6 +69,9 @@ def resetrequestpage():
         return redirect(url_for('loginpage'))
     return render_template('resetrequestpage.html', title='Reset Request', form=form)
 
+#Page that user gets redirected to from the email they received, url is created from the token. 
+#Token is validated using function from User class, if invalid, user cannot reset token.
+#otherwise user can enter a new password twice to confirm, and changes will be committed
 @app.route('/resetpassword/<token>', methods=['GET', 'POST'])
 def resettoken(token):
     user = User.verify_reset_token(token)
@@ -79,14 +86,17 @@ def resettoken(token):
         return redirect(url_for('loginpage'))
     return render_template('resettoken.html', title='Reset Password', form=form)
 
+#dashboard page route
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html', title ='dashboard')
 
+#account details page route
 @app.route('/account', methods=['GET', 'POST'])
 def account():
     return render_template('accountpage.html', title ='Account')
 
+#this page allows user to change their information, changes are committed
 @app.route('/accountupdate', methods=['GET', 'POST'])
 def accountupdate():
     form = UpdateDetailsForm()
@@ -99,6 +109,7 @@ def accountupdate():
         db.session.commit()
     return render_template('accountupdatepage.html', title='Account Update', form=form)
 
+#allows user to change their password
 @app.route('/changepassword', methods=['GET', 'POST'])
 def changepassword():
     form = ChangePasswordForm()
@@ -109,7 +120,8 @@ def changepassword():
         return redirect(url_for('account'))
     return render_template('changepasswordpage.html', title='Change Password', form=form)
 
-
+#shows all patient records that the user has put in. records from other users will not show.
+#search function on this page takes in string input by user and uses SQL to query the database and returns matching records
 @app.route('/user/records', methods=['GET', 'POST'])
 def userrecords():
     form= SearchPatientForm()
@@ -117,18 +129,16 @@ def userrecords():
     if request.method == 'POST':
         search = form.search.data
         search = search.strip()
-        print(search)
+     
         likestring = "%{}%".format(search)
         sql = "SELECT id, firstname, lastname, country FROM patient WHERE firstname LIKE :x OR lastname LIKE :y OR id LIKE :z OR country LIKE :a"
         stmt = db.text(sql).bindparams(x=likestring, y=likestring, z=likestring, a=likestring)
         patients = db.session.execute(stmt).fetchall()
-       
-        print (patients)
 
-    
     else: patients = Patient.query.filter_by(therapyid = current_user.id).all()
     return render_template('userrecords.html', title='Records', patients=patients, form=form, search=search)
 
+#page allows user to add a patient record. Each record has its foreign key filled with the user's ID. All other data is taken from user input and is committed. 
 @app.route('/addrecord', methods=['GET', 'POST'])
 def addrecordpage():
     form = PatientForm()
@@ -144,6 +154,8 @@ def addrecordpage():
         flash('Error Adding!')
     return render_template('addrecord.html', title='Add Record', form=form)
 
+#displays a page for a particular patient record using patient ID. If patient ID does not exist in database, 404 page is shown. 
+#videos which have this patient's ID as foreign key will also be shown here
 @app.route('/patient/<int:patient_id>', methods=["GET"])
 def recordpage(patient_id):
     patient = Patient.query.get_or_404(patient_id)
@@ -242,7 +254,7 @@ def processedVideo(videoID):
     # send the list of results to display the results for each vid:
     return render_template("outputDL.html", video = vid, ouput = queriedResults)
 
-
+#allows user to update any existing record. If user tries to update any record from another user, there will be a 403 error. 
 @app.route('/patient/<int:patient_id>/update', methods=["GET", "POST"])
 def updaterecordpage(patient_id):
     patient = Patient.query.get_or_404(patient_id)
@@ -255,12 +267,10 @@ def updaterecordpage(patient_id):
         patient.lastname=form.lastname.data 
         patient.age=form.age.data
         patient.country=form.country.data
-        
         patient.guardiantitle=form.guardiantitle.data
         patient.guardianfirstname=form.guardianfirstname.data
         patient.guardianlastname=form.guardianlastname.data
         patient.email=form.email.data
-        
         patient.relationship=form.relationship.data
    
         db.session.commit()
@@ -268,7 +278,7 @@ def updaterecordpage(patient_id):
         return redirect(url_for('recordpage', id=patient.id))
     return render_template('updaterecordpage.html', title='Update Record', form=form)
 
-
+#allows user to delete any existing record. If user tries to delete any record from another user, there will be a 403 error. 
 @app.route('/patient/<int:patient_id>/delete', methods=['POST'])
 def deleterecord(patient_id):
     patient = Patient.query.get_or_404(patient_id)
@@ -279,14 +289,3 @@ def deleterecord(patient_id):
     flash('Record Deleted')
     return redirect(url_for('dashboard'))
 
-"""
-@app.route('/processedVideo/<int:videoID>/delete', methods=['POST'])
-def deletevideo(videoID):
-    video = VideoFiles.query.get_or_404(videoID)
-    if video.user != current_user:
-        abort(403)
-    db.session.delete(video)
-    db.session.commit()
-    flash('Video Deleted')
-    return redirect(url_for('dashboard'))
-    """
