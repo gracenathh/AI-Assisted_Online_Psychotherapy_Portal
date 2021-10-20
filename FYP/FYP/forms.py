@@ -1,3 +1,5 @@
+#forms details all the forms that are to be used in the web application. Each form is called respectively in a route function in routes and is the label and field of the  
+#form is called in that route function's linked HTML page. Some fields have DataRequired validator to ensure user fills in those fields.
 from flask.app import Flask
 from flask_wtf import FlaskForm
 from wtforms import StringField
@@ -24,14 +26,13 @@ class RegisterForm(FlaskForm):
     confirmPassword = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
 
     submit = SubmitField('Register')
-
     
+    #ensure there is no repeat email addresses
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError('Email Already Registered!')
     
-
 
 class PatientForm(FlaskForm):
     gender = SelectField(u'Gender', choices=[('Male'), ('Female')])
@@ -39,7 +40,6 @@ class PatientForm(FlaskForm):
     lastname = StringField('Last Name', validators=[DataRequired()])
     age = IntegerField('Age in Years')
     country = StringField('Country')
-
 
     guardiantitle = SelectField(u'Title', choices=[('Dr.'), ('Mr.'), ('Mrs.'), ('Ms.'), ('Mdm'), ('Miss')])
     guardianfirstname = StringField('First Name', validators=[DataRequired()])
