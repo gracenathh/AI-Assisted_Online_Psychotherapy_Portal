@@ -1,5 +1,5 @@
 
-#Just trying out some sample python code
+#Script file for deep learning module, it will be called from routes.py when video is processed
 
 # #Imports
 import sys
