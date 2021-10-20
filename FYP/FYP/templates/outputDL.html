@@ -64,11 +64,13 @@
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
     <script>
+        // get element based on the id tag myvideo
         var myvideo = document.getElementById('myvideo'),
 
         // jumplink = document.getElementById('jump');
         jumplink = document.getElementsByClassName("btn btn-danger"); //Get a collection of html elements by class name
 
+        // for each of the clicks that take place, create an event where the video is jumped to the timestamp
         for (var i = 0; i< jumplink.length; i ++ ){
 
             jumplink[i].addEventListener("click", function (event) {
@@ -80,7 +82,7 @@
             }, false);
         }
 
-
+        // convert the time to only seconds:
         function hmsToSecondsOnly(str) {
             var p = str.split(':'),
                 s = 0, m = 1;

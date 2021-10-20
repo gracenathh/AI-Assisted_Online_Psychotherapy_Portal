@@ -150,12 +150,15 @@ def recordpage(patient_id):
     videos = VideoFiles.query.filter_by(patientid = patient_id).all()
     return render_template('patient.html', title=patient.id, patient=patient, videos=videos)
 
-
-
 @app.route("/upload", methods=['POST', 'GET'])
 def video_upload():
-    
+    """
+    Route for the user to upload the video onto the Video Database
+    """
+
+    # Call the post method to upload video
     if request.method == 'POST':
+        # get the video file type:
         video_file = request.files['videoFile']
         patientid = request.form.get('patientid')
         if not video_file:
@@ -174,11 +177,16 @@ def video_upload():
         # dd/mm/YY H:M:S
         dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 
+        # get the filename which is stored in the uploaded folder
         video_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # create a new record in the video files
         newVideo = VideoFiles(videoName=filename, videoData=video_file.read(), videoDate=dt_string, uploaderid=current_user.id, patientid=patientid)
+        # add the new record:
         db.session.add(newVideo)
+        # commit the changes to the database
         db.session.commit()
 
+        # Output on the screen as verification to the user:
         return {
             "message": "Video " + filename + " has been successfully uploaded!"
         }
@@ -189,36 +197,27 @@ def video_upload():
 
 @app.route("/display/<filename>")
 def play_video(filename):
-    # CHECK FOR FILE EXISTS
-    # video_data = VideoFiles.query.all()
-    # video_array = []
-    # for i in video_data:
-    #     if (i.videoName == filename):
-    #         video_array.append(i.videoName)
-
-    # print(video_array)
-
+    """
+    Display the video after uploaded:
+    @param filename: name of the video file
+    @return: redirect to the uploads.html page
+    """
     return render_template("uploads.html", video = filename)
 
 
 @app.route("/videoDb")
 def videoDB():
-
+    """
+    Video database displaying the list of videos uploaded by the patient.
+    @return: redirect to the video database page
+    """
     video_data = VideoFiles.query.filter_by(uploaderid = current_user.id).all()
-    
-    # video_array = []
-    # for i in video_data:
-    #    video_array.append(i.videoName)
-
-    # print(video_array)
-
     return render_template("videoDB.html", user = Variables.username, videos = video_data)
-    # videos = video_array,
 
 
 @app.route("/processedVideo/<int:videoID>")
 def processedVideo(videoID):
-    #Page for a specific video
+    #Display the Processed video page:
     vid = VideoFiles.query.get_or_404(videoID)
     if vid.videoEmotion == None: #If did not process the video before
         #Perform the DL output here. Shld print here then render template with the output
@@ -226,7 +225,6 @@ def processedVideo(videoID):
             videoDirectory =  os.path.join(os.getcwd(), 'FYP', 'static', 'uploads', vid.videoName)
             print(videoDirectory)
             predictedresult = main(videoDirectory)
-            #print(predictedresult)
 
             #Store the results in the database
             vid.videoEmotion = predictedresult
@@ -241,7 +239,7 @@ def processedVideo(videoID):
     queriedResults = VideoFiles.query.get_or_404(videoID).videoEmotion
     print(queriedResults)
 
-    #return render_template("video-output-page-11.html",video = vid)
+    # send the list of results to display the results for each vid:
     return render_template("outputDL.html", video = vid, ouput = queriedResults)
 
 

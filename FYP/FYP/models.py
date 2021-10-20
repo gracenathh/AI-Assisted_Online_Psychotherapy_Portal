@@ -59,7 +59,11 @@ class Patient(db.Model):
     def __repr__(self):
         return f"Patient('{self.id}')"
 
+
 class VideoFiles(db.Model):
+    """
+    Video Files containing the Database records for all Video uploads.
+    """
     __tablename__="VideoFiles"
     videoID = db.Column(db.Integer, primary_key = True, autoincrement=True)
     videoName = db.Column(db.String(300), nullable = False)
