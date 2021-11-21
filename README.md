@@ -21,3 +21,7 @@ Please refer to the UserGuide.pdf on how to use the web application and to set u
 To get a better understanding of the details of the project such as the design and methodology, the analysis of the results, and decisions
 made throughout the development of the project, please refer to the Report.pdf for the information. 
 
+## DL implementation
+The DL FER is a significant part of our project besides the web application. To view how it was developed in greater detail, see
+Documented_FYP.ipynb which details the development of the DL as a notebook. This is not used in the web application rather a shorter
+python script is integrated into the FYP folder which is called by the web app when needed.
