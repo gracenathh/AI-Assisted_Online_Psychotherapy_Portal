@@ -25,3 +25,24 @@ made throughout the development of the project, please refer to the Report.pdf f
 The DL FER is a significant part of our project besides the web application. To view how it was developed in greater detail, see
 Documented_FYP.ipynb which details the development of the DL as a notebook. This is not used in the web application rather a shorter
 python script is integrated into the FYP folder which is called by the web app when needed.
+
+## Final Presentation Slides
+<img src="/Final Presentation Slides/1.png" alt="Cover"/>
+<img src="/Final Presentation Slidesg/2.png" alt="Slides' Contents"/>
+<img src="/Final Presentation Slides/3.png" alt="Introduction"/>
+<img src="/Final Presentation Slides/4.png" alt="Web-application landing page"/>
+<img src="/Final Presentation Slides/5.png" alt="RTM"/>
+<img src="/Final Presentation Slides/6.png" alt="Requirements"/>
+<img src="/Final Presentation Slides/7.png" alt="Conclusion of Fulfilment"/>
+<img src="/Final Presentation Slides/8.png" alt="Divider - Methodology"/>
+<img src="/Final Presentation Slides/9.png" alt="Web Application Architecture"/>
+<img src="/Final Presentation Slides/10.png" alt="Machine Learning Architecture"/>
+<img src="/Final Presentation Slides/11.png" alt="Design Implementation"/>
+<img src="/Final Presentation Slides/12.png" alt="Summary of Software Deliverables"/>
+<img src="/Final Presentation Slides/13.png" alt="Divider - Team's PM"/>
+<img src="/Final Presentation Slides/14.png" alt="PM type"/>
+<img src="/Final Presentation Slides/15.png" alt="PM limitations"/>
+<img src="/Final Presentation Slides/16.png" alt="Divider - Future works/recommendations"/>
+<img src="/Final Presentation Slides/17.png" alt="Project Execution"/>
+<img src="/Final Presentation Slides/18.png" alt="Possible future work"/>
+<img src="/Final Presentation Slides/19.png" alt="Conclusion"/>
