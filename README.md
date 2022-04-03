@@ -28,7 +28,7 @@ python script is integrated into the FYP folder which is called by the web app w
 
 ## Final Presentation Slides
 <img src="/Final Presentation Slides/1.png" alt="Cover"/>
-<img src="/Final Presentation Slidesg/2.png" alt="Slides' Contents"/>
+<img src="/Final Presentation Slides/2.png" alt="Slides' Contents"/>
 <img src="/Final Presentation Slides/3.png" alt="Introduction"/>
 <img src="/Final Presentation Slides/4.png" alt="Web-application landing page"/>
 <img src="/Final Presentation Slides/5.png" alt="RTM"/>
